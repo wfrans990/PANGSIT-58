@@ -2086,8 +2086,48 @@ body.page-menunggu-active #newOrderBtn{display:none!important}
 }
 </style>
 
+
+<style id="v21-professional-motion">
+:root{--v21-ease:cubic-bezier(.2,.75,.2,1);--v21-fast:140ms;--v21-normal:220ms}
+html{scroll-behavior:smooth}
+.btn,.nav button,.filters button,.payment-method-btn,.payment-bank-account,.qty button{
+ transition:transform var(--v21-fast) var(--v21-ease),box-shadow var(--v21-fast) var(--v21-ease),
+ background-color var(--v21-fast) var(--v21-ease),border-color var(--v21-fast) var(--v21-ease),color var(--v21-fast) var(--v21-ease)
+}
+.btn:active,.filters button:active,.payment-method-btn:active,.payment-bank-account:active,.qty button:active{transform:scale(.97)}
+.product:hover{transform:translate3d(0,-3px,0)}
+.stat:hover{transform:translate3d(0,-2px,0);box-shadow:0 16px 34px rgba(52,31,24,.10)}
+.panel:hover{box-shadow:0 15px 38px rgba(52,31,24,.085)}
+.product,.stat,.panel,.pending-card{contain:layout paint}
+.products,.pending-payment-list{contain:layout style}
+@keyframes v21-fade-up{from{opacity:0;transform:translate3d(0,7px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+
+
+<style id="v21-modal-mobile-fix">
+@media(max-width:767px){
+ .modal{padding:0;align-items:flex-end}
+ .modal-card{width:100%!important;max-width:100%!important;max-height:calc(100dvh - 6px)!important;border-radius:20px 20px 0 0;overflow:hidden}
+ .modal-card .modal-body{overflow:auto;-webkit-overflow-scrolling:touch;max-height:calc(100dvh - 112px)}
+ #invoiceEditModal .modal-body{padding:12px}
+ #invoiceEditModal .invoice-edit-meta-grid{grid-template-columns:1fr!important;width:100%}
+}
+</style>
+
+
+<style id="v21-loading-veil">
+#v21LoadingVeil{position:fixed;inset:0;z-index:9999;display:none;place-items:center;background:rgba(38,9,11,.16);backdrop-filter:blur(2px);pointer-events:none}
+#v21LoadingVeil.show{display:grid}
+#v21LoadingVeil .v21-spinner{width:34px;height:34px;border:3px solid rgba(141,23,29,.18);border-top-color:#8d171d;border-radius:50%;animation:v21-spin .65s linear infinite}
+@keyframes v21-spin{to{transform:rotate(360deg)}}
+</style>
+
 </head>
 <body>
+<div id="v21LoadingVeil" aria-hidden="true"><div class="v21-spinner"></div></div>
 
 <!-- ROLE LOGIN -->
 <div id="loginScreen" class="login-screen">
@@ -4823,5 +4863,35 @@ window.addEventListener("afterprint",()=>{
 })();
 
 </script>
+
+<script id="v21-performance-feedback">
+(function(){
+ "use strict";
+ const safe=(fn)=>{try{fn()}catch(e){console.warn("V21 UI:",e)}};
+ document.addEventListener("click",function(ev){
+   const btn=ev.target.closest("button");
+   if(!btn||btn.disabled||btn.dataset.v21Busy==="1")return;
+   const text=(btn.textContent||"").trim().toLowerCase();
+   if(!/simpan|bayar|cetak|proses|konfirmasi|login/.test(text))return;
+   btn.dataset.v21Busy="1";
+   btn.classList.add("v21-pressed");
+   setTimeout(()=>{btn.dataset.v21Busy="0";btn.classList.remove("v21-pressed")},650);
+ },true);
+ window.v21Reveal=function(root){
+   safe(()=>{
+     if(!root)return;
+     root.querySelectorAll(".panel,.stat,.product,.pending-card,.settings-card").forEach((el,i)=>{
+       el.style.animation="v21-fade-up .34s var(--v21-ease) both";
+       el.style.animationDelay=Math.min(i*18,180)+"ms";
+     });
+   });
+ };
+ const observer=new MutationObserver(m=>{
+   for(const x of m)if(x.type==="attributes"&&x.attributeName==="class"&&x.target.classList.contains("page")&&x.target.classList.contains("active"))window.v21Reveal(x.target);
+ });
+ document.querySelectorAll(".page").forEach(p=>observer.observe(p,{attributes:true}));
+})();
+</script>
+
 </body>
 </html>
