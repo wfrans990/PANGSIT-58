@@ -24,7 +24,7 @@ html,body{margin:0;min-width:320px;min-height:100%;font-family:Inter,system-ui,-
 body{overflow-x:hidden;-webkit-font-smoothing:antialiased}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-button,input,select{min-height:42px}
+button,input,select{min-height:20px}
 button{-webkit-tap-highlight-color:transparent}
 img{max-width:100%}
 .hidden,[hidden]{display:none!important}
@@ -2125,6 +2125,119 @@ html{scroll-behavior:smooth}
 @keyframes v21-spin{to{transform:rotate(360deg)}}
 </style>
 
+<style id="account-layout-fix">
+.sidebar .sidebar-account{cursor:default!important}
+.sidebar .sidebar-account .account-profile{display:flex!important;align-items:center!important;gap:9px!important}
+.sidebar .sidebar-account .account-info{min-width:0!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:3px!important}
+.sidebar .sidebar-account .account-info #sidebarAccountName{display:block!important;margin:0!important;color:#fffaf5!important;font-size:11px!important;line-height:1.15!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.sidebar .sidebar-account .account-action.account-logout{position:static!important;display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;width:auto!important;margin:0!important;padding:3px 8px!important;border:1px solid rgba(197,40,49,.24)!important;border-radius:7px!important;background:rgba(197,40,49,.14)!important;color:#ffc9c9!important;font-size:8.5px!important;line-height:1!important;font-weight:900!important;box-shadow:none!important;cursor:pointer!important}
+.sidebar .sidebar-account .account-action.account-logout:hover{background:rgba(197,40,49,.28)!important;border-color:rgba(243,199,107,.22)!important;color:#fff!important}
+.sidebar .sidebar-account .account-action-icon{width:16px!important;height:16px!important;min-width:16px!important;display:grid!important;place-items:center!important;border-radius:5px!important;background:rgba(197,40,49,.20)!important;color:#ffc0c0!important;font-size:9px!important}
+</style>
+
+<style id="account-integrated-visual">
+/* ACCOUNT PROFILE — Logout menyatu dengan profile, bukan tombol tempelan */
+.sidebar .sidebar-account{
+  padding:10px!important;
+  overflow:hidden!important;
+}
+
+.sidebar .sidebar-account .account-profile{
+  display:grid!important;
+  grid-template-columns:38px minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:9px!important;
+}
+
+.sidebar .sidebar-account .account-avatar{
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+}
+
+.sidebar .sidebar-account .account-info{
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:1px!important;
+}
+
+.sidebar .sidebar-account .account-info #sidebarAccountName{
+  display:block!important;
+  width:100%!important;
+  margin:0!important;
+  color:#fff!important;
+  font-size:11px!important;
+  line-height:1.2!important;
+  font-weight:850!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* Logout benar-benar menjadi bagian dari account-info */
+.sidebar .sidebar-account .account-action.account-logout{
+  position:static!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:5px!important;
+  width:auto!important;
+  min-height:20px!important;
+  margin:0!important;
+  padding:1px 0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#bfa9a3!important;
+  font-size:8px!important;
+  line-height:1.2!important;
+  font-weight:800!important;
+  box-shadow:none!important;
+  text-align:left!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible{
+  background:transparent!important;
+  color:#f3c86e!important;
+  outline:none!important;
+}
+
+.sidebar .sidebar-account .account-action-icon{
+  width:16px!important;
+  height:16px!important;
+  min-width:16px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:5px!important;
+  background:rgba(255,255,255,.045)!important;
+  color:#cdbab4!important;
+  font-size:9px!important;
+  transition:background .16s ease,color .16s ease,transform .16s ease!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover .account-action-icon,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible .account-action-icon{
+  background:rgba(243,199,107,.10)!important;
+  color:#f3c86e!important;
+  transform:translateX(1px)!important;
+}
+
+/* Mobile tetap proporsional */
+@media(max-width:767px){
+  .sidebar .sidebar-account{
+    padding:9px 10px!important;
+  }
+
+  .sidebar .sidebar-account .account-info #sidebarAccountName{
+    font-size:11px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div id="v21LoadingVeil" aria-hidden="true"><div class="v21-spinner"></div></div>
@@ -2196,21 +2309,18 @@ html{scroll-behavior:smooth}
   </nav>
   <div class="sidebar-bottom">
     <div class="account-wrap" id="accountWrap">
-      <div class="sidebar-account" id="sidebarAccount" role="button" tabindex="0" aria-expanded="false" aria-controls="accountActionPopover">
+      <div class="sidebar-account" id="sidebarAccount">
         <div class="account-profile">
           <div class="account-avatar" id="sidebarAccountAvatar">A</div>
           <div class="account-info">
-            <strong id="sidebarAccountName">Admin</strong>
-            <span id="sidebarRoleText">Admin • Kasir Only</span>
+            <strong id="sidebarAccountName">Admin • Kasir Only</strong>
+            <button class="account-action account-logout" id="sidebarLogoutBtn" type="button" aria-label="Logout">
+              <span class="account-action-icon">↪</span>
+              <span>Logout</span>
+            </button>
           </div>
           
         </div>
-      </div>
-      <div class="account-action-popover" id="accountActionPopover" aria-hidden="true">
-        <button class="account-action account-logout" id="sidebarLogoutBtn" type="button">
-          <span class="account-action-icon">↪</span>
-          <span>Keluar</span>
-        </button>
       </div>
     </div>
   </div>
@@ -2843,12 +2953,11 @@ function setRoleUI(){
   if(badge){
      const isMaster=currentUserRole==="master";
      badge.textContent=isMaster?"MASTER":"ADMIN KASIR";
-     const sr=document.getElementById("sidebarRoleText");
-     if(sr) sr.textContent=isMaster?"Master • Full Access":"Admin • Kasir Only";
-     const name=currentUserName||(isMaster?"Master":"Admin");
      const accountName=document.getElementById("sidebarAccountName");
      const accountAvatar=document.getElementById("sidebarAccountAvatar");
-     if(accountName) accountName.textContent=name;
+     const roleLabel=isMaster?"Master • Full Access":"Admin • Kasir Only";
+     if(accountName) accountName.textContent=roleLabel;
+     const name=currentUserName||(isMaster?"Master":"Admin");
      if(accountAvatar) accountAvatar.textContent=name.charAt(0).toUpperCase();
      badge.classList.toggle("master",isMaster);
    }
@@ -4572,7 +4681,7 @@ document.getElementById("removeStoreLogo")?.addEventListener("click",()=>{
 });
 
 document.getElementById("masterStatusBtn")?.addEventListener("click",()=>requireMaster(()=>{}));
-document.getElementById("sidebarLogoutBtn")?.addEventListener("click",logout);
+
 document.getElementById("mobileLogoutBtn")?.addEventListener("click",e=>{e.preventDefault();logout();});
 document.getElementById("loginSubmit").onclick=attemptLogin;
 document.getElementById("loginPassword").addEventListener("keydown",e=>{if(e.key==="Enter")attemptLogin()});
@@ -4740,28 +4849,10 @@ if(pendingPayAmountEl)pendingPayAmountEl.addEventListener("input",()=>{
 
 const accountWrap=document.getElementById("accountWrap");
 const sidebarAccount=document.getElementById("sidebarAccount");
-const accountActionPopover=document.getElementById("accountActionPopover");
-function toggleAccountActions(force){
-  if(!accountWrap)return;
-  const open=typeof force==="boolean"?force:!accountWrap.classList.contains("open");
-  accountWrap.classList.toggle("open",open);
-  if(sidebarAccount)sidebarAccount.setAttribute("aria-expanded",open?"true":"false");
-  if(accountActionPopover)accountActionPopover.setAttribute("aria-hidden",open?"false":"true");
-}
-if(sidebarAccount){
-  sidebarAccount.addEventListener("click",()=>toggleAccountActions());
-  sidebarAccount.addEventListener("keydown",e=>{
-    if(e.key==="Enter" || e.key===" "){e.preventDefault();toggleAccountActions();}
-  });
-}
-document.addEventListener("click",e=>{
-  if(accountWrap && !accountWrap.contains(e.target)) toggleAccountActions(false);
-});
 document.getElementById("sidebarLogoutBtn")?.addEventListener("click",e=>{
   e.preventDefault();
   e.stopPropagation();
-  logout();
-  toggleAccountActions(false);
+  if(window.confirm("Yakin ingin logout sekarang?")) logout();
 });
 
 function saveOrderToPendingPayment(){
