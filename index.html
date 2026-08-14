@@ -2877,6 +2877,728 @@ html{scroll-behavior:smooth}
 }
 </style>
 
+
+<style id="v22-professional-logout">
+/* =========================================================
+   V22 — PROFESSIONAL LOGOUT
+   Logout dibuat seperti kontrol akun premium:
+   jelas, rapi, tidak mencolok, tetapi tetap mudah ditemukan.
+   ========================================================= */
+
+.sidebar .sidebar-account{
+  position:relative!important;
+  padding:10px!important;
+  border:1px solid rgba(255,255,255,.095)!important;
+  border-radius:16px!important;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.025))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    0 10px 24px rgba(0,0,0,.12)!important;
+  transition:
+    border-color .18s ease,
+    background .18s ease,
+    box-shadow .18s ease!important;
+}
+
+.sidebar .sidebar-account:hover{
+  border-color:rgba(243,199,107,.18)!important;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.035))!important;
+}
+
+.sidebar .sidebar-account .account-profile{
+  grid-template-columns:40px minmax(0,1fr)!important;
+  gap:10px!important;
+}
+
+.sidebar .sidebar-account .account-avatar{
+  width:40px!important;
+  height:40px!important;
+  min-width:40px!important;
+  border-radius:12px!important;
+  background:
+    linear-gradient(145deg,#f3c86e 0%,#c88e32 45%,#a51f27 100%)!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:
+    0 7px 16px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.28)!important;
+  font-size:14px!important;
+}
+
+.sidebar .sidebar-account .account-info{
+  gap:5px!important;
+}
+
+.sidebar .sidebar-account .account-info #sidebarAccountName{
+  font-size:10.5px!important;
+  font-weight:900!important;
+  letter-spacing:.05px!important;
+}
+
+/* Tombol logout */
+.sidebar .sidebar-account .account-action.account-logout{
+  width:100%!important;
+  min-height:28px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:6px!important;
+  margin-top:1px!important;
+  padding:4px 6px!important;
+  border:1px solid rgba(255,255,255,.055)!important;
+  border-radius:8px!important;
+  background:rgba(255,255,255,.035)!important;
+  color:#cdbbb5!important;
+  font-size:8px!important;
+  font-weight:850!important;
+  letter-spacing:.1px!important;
+  text-decoration:none!important;
+  transition:
+    background .18s ease,
+    border-color .18s ease,
+    color .18s ease,
+    transform .18s ease,
+    box-shadow .18s ease!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible{
+  background:linear-gradient(90deg,rgba(180,35,42,.19),rgba(180,35,42,.08))!important;
+  border-color:rgba(218,105,105,.28)!important;
+  color:#ffe1de!important;
+  transform:translateY(-1px)!important;
+  box-shadow:0 5px 12px rgba(0,0,0,.10)!important;
+  outline:none!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:active{
+  transform:translateY(0)!important;
+  box-shadow:none!important;
+}
+
+/* Icon logout */
+.sidebar .sidebar-account .account-action-icon{
+  width:20px!important;
+  height:20px!important;
+  min-width:20px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:6px!important;
+  background:rgba(180,35,42,.12)!important;
+  color:#e7a5a2!important;
+  font-size:0!important;
+  transition:
+    background .18s ease,
+    color .18s ease,
+    transform .18s ease!important;
+}
+
+.sidebar .sidebar-account .account-action-icon svg{
+  width:11px!important;
+  height:11px!important;
+  display:block!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover .account-action-icon,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible .account-action-icon{
+  background:rgba(197,40,49,.24)!important;
+  color:#ffd0cc!important;
+  transform:translateX(1px)!important;
+}
+
+/* Panah kecil memberi affordance bahwa ini adalah aksi */
+.sidebar .sidebar-account .logout-arrow{
+  margin-left:auto!important;
+  width:16px!important;
+  height:16px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:5px!important;
+  color:#8e7771!important;
+  font-size:15px!important;
+  line-height:1!important;
+  transition:color .18s ease,transform .18s ease!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover .logout-arrow,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible .logout-arrow{
+  color:#f0b5ae!important;
+  transform:translateX(2px)!important;
+}
+
+/* Mobile: tetap nyaman disentuh */
+@media(max-width:767px){
+  .sidebar .sidebar-account{
+    padding:10px!important;
+    border-radius:16px!important;
+  }
+
+  .sidebar .sidebar-account .account-profile{
+    grid-template-columns:42px minmax(0,1fr)!important;
+    gap:10px!important;
+  }
+
+  .sidebar .sidebar-account .account-avatar{
+    width:42px!important;
+    height:42px!important;
+    min-width:42px!important;
+  }
+
+  .sidebar .sidebar-account .account-action.account-logout{
+    min-height:32px!important;
+    padding:5px 7px!important;
+    font-size:8.5px!important;
+  }
+
+  .sidebar .sidebar-account .account-action-icon{
+    width:22px!important;
+    height:22px!important;
+    min-width:22px!important;
+  }
+}
+</style>
+
+
+<style id="v23-premium-account-logout">
+/* =========================================================
+   V23 — PREMIUM ACCOUNT / LOGOUT
+   Logout menyatu sebagai bagian dari account card.
+   Tidak memakai popover, tidak terlihat seperti tempelan.
+   ========================================================= */
+
+.sidebar .sidebar-account{
+  position:relative!important;
+  padding:11px 11px 9px!important;
+  border:1px solid rgba(232,201,132,.16)!important;
+  border-radius:17px!important;
+  background:
+    radial-gradient(180px 80px at 8% 0%,rgba(243,199,107,.10),transparent 70%),
+    linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    0 14px 30px rgba(0,0,0,.18)!important;
+  overflow:hidden!important;
+}
+
+.sidebar .sidebar-account::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:linear-gradient(180deg,#f4cf78,#a51f27);
+  opacity:.9;
+}
+
+.sidebar .sidebar-account .account-profile{
+  display:grid!important;
+  grid-template-columns:42px minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:10px!important;
+  padding:1px 1px 9px!important;
+  margin-bottom:7px!important;
+  border-bottom:1px solid rgba(255,255,255,.075)!important;
+}
+
+.sidebar .sidebar-account .account-avatar{
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+  border-radius:13px!important;
+  background:
+    linear-gradient(145deg,#f5cf75 0%,#d98d43 38%,#b4232a 100%)!important;
+  border:1px solid rgba(255,255,255,.17)!important;
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.3)!important;
+  color:#fff!important;
+  font-size:15px!important;
+  font-weight:950!important;
+}
+
+.sidebar .sidebar-account .account-info{
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:4px!important;
+}
+
+.sidebar .sidebar-account .account-info #sidebarAccountName{
+  display:block!important;
+  max-width:100%!important;
+  margin:0!important;
+  color:#fffaf5!important;
+  font-size:10.5px!important;
+  line-height:1.15!important;
+  font-weight:900!important;
+  letter-spacing:.05px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+/* The logout control is intentionally integrated into the card,
+   rather than looking like a separate red button. */
+.sidebar .sidebar-account .account-action.account-logout{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:27px minmax(0,1fr) 17px!important;
+  align-items:center!important;
+  gap:8px!important;
+  width:100%!important;
+  min-height:31px!important;
+  margin:0!important;
+  padding:4px 6px!important;
+  border:1px solid transparent!important;
+  border-radius:9px!important;
+  background:transparent!important;
+  color:#d8c4be!important;
+  text-align:left!important;
+  font-size:8.5px!important;
+  line-height:1!important;
+  font-weight:850!important;
+  box-shadow:none!important;
+  cursor:pointer!important;
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease,
+    transform .2s ease!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:9px;
+  background:linear-gradient(90deg,rgba(197,40,49,.12),rgba(212,160,75,.045));
+  opacity:0;
+  transition:opacity .2s ease;
+  pointer-events:none;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible{
+  color:#fff4ef!important;
+  border-color:rgba(243,199,107,.12)!important;
+  transform:translateX(1px)!important;
+  outline:none!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover::before,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible::before{
+  opacity:1;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:active{
+  transform:translateX(0)!important;
+}
+
+/* Logout icon becomes a refined account-exit mark. */
+.sidebar .sidebar-account .account-action-icon{
+  position:relative!important;
+  z-index:1!important;
+  width:27px!important;
+  height:27px!important;
+  min-width:27px!important;
+  display:grid!important;
+  place-items:center!important;
+  border:1px solid rgba(243,199,107,.12)!important;
+  border-radius:8px!important;
+  background:rgba(255,255,255,.045)!important;
+  color:#e4b96c!important;
+  font-size:0!important;
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    color .2s ease,
+    transform .2s ease!important;
+}
+
+.sidebar .sidebar-account .account-action-icon svg{
+  width:12px!important;
+  height:12px!important;
+  display:block!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout > span:nth-child(2){
+  position:relative!important;
+  z-index:1!important;
+  display:block!important;
+  color:inherit!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover .account-action-icon,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible .account-action-icon{
+  background:rgba(180,35,42,.18)!important;
+  border-color:rgba(243,199,107,.22)!important;
+  color:#f4cb78!important;
+  transform:translateX(1px)!important;
+}
+
+.sidebar .sidebar-account .logout-arrow{
+  position:relative!important;
+  z-index:1!important;
+  width:17px!important;
+  height:17px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:6px!important;
+  color:#79635d!important;
+  font-size:15px!important;
+  line-height:1!important;
+  transition:color .2s ease,transform .2s ease!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover .logout-arrow,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible .logout-arrow{
+  color:#e8bd70!important;
+  transform:translateX(2px)!important;
+}
+
+/* Make the account card feel like one continuous component on touch devices. */
+@media(max-width:767px){
+  .sidebar .sidebar-account{
+    padding:11px 10px 9px!important;
+    border-radius:17px!important;
+  }
+
+  .sidebar .sidebar-account .account-profile{
+    grid-template-columns:43px minmax(0,1fr)!important;
+    gap:10px!important;
+    padding-bottom:9px!important;
+  }
+
+  .sidebar .sidebar-account .account-avatar{
+    width:43px!important;
+    height:43px!important;
+    min-width:43px!important;
+  }
+
+  .sidebar .sidebar-account .account-action.account-logout{
+    min-height:34px!important;
+    grid-template-columns:28px minmax(0,1fr) 18px!important;
+    font-size:9px!important;
+  }
+
+  .sidebar .sidebar-account .account-action-icon{
+    width:28px!important;
+    height:28px!important;
+    min-width:28px!important;
+  }
+}
+</style>
+
+
+<style id="v24-power-logout-icon">
+.sidebar .sidebar-account .account-action.account-logout .account-action-icon{
+  width:27px!important;height:27px!important;min-width:27px!important;
+  border:0!important;border-radius:8px!important;
+  background:rgba(255,255,255,.045)!important;
+  color:#f3f1ed!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+.sidebar .sidebar-account .account-action.account-logout .account-action-icon svg{
+  width:15px!important;height:15px!important;display:block!important;
+}
+.sidebar .sidebar-account .account-action.account-logout:hover .account-action-icon,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible .account-action-icon{
+  color:#fff!important;background:rgba(255,255,255,.075)!important;
+  transform:none!important;
+}
+</style>
+
+
+<style id="account-compact-final">
+/* FINAL — compact account card */
+.sidebar .sidebar-account{
+  padding:8px 9px 7px!important;
+  border-radius:15px!important;
+}
+
+.sidebar .sidebar-account .account-profile{
+  grid-template-columns:34px minmax(0,1fr)!important;
+  gap:8px!important;
+  padding:0 0 6px!important;
+  align-items:center!important;
+}
+
+.sidebar .sidebar-account .account-avatar{
+  width:34px!important;
+  height:34px!important;
+  min-width:34px!important;
+  border-radius:10px!important;
+  font-size:15px!important;
+}
+
+.sidebar .sidebar-account .account-info{
+  gap:1px!important;
+  justify-content:center!important;
+}
+
+.sidebar .sidebar-account .account-info #sidebarAccountName{
+  font-size:10px!important;
+  line-height:1.15!important;
+  margin:0!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout{
+  width:auto!important;
+  min-height:20px!important;
+  height:20px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  margin:0!important;
+  padding:1px 2px!important;
+  border:0!important;
+  border-radius:6px!important;
+  background:transparent!important;
+  color:#d8c2bd!important;
+  font-size:7.5px!important;
+  line-height:1!important;
+  font-weight:800!important;
+  box-shadow:none!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible{
+  background:rgba(255,255,255,.045)!important;
+  color:#f3c86e!important;
+  outline:none!important;
+}
+
+.sidebar .sidebar-account .account-action-icon{
+  width:20px!important;
+  height:20px!important;
+  min-width:20px!important;
+  border-radius:6px!important;
+  background:rgba(255,255,255,.045)!important;
+  color:#e8ddd9!important;
+  font-size:8px!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover .account-action-icon,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible .account-action-icon{
+  background:rgba(243,199,107,.10)!important;
+  color:#f3c86e!important;
+  transform:none!important;
+}
+
+/* Remove unnecessary vertical space below logout. */
+.sidebar .sidebar-account .account-profile::after{
+  display:none!important;
+}
+
+/* Keep the card compact on phones and tablet drawers too. */
+@media(max-width:1199px){
+  .sidebar .sidebar-account{
+    padding:7px!important;
+  }
+  .sidebar .sidebar-account .account-profile{
+    grid-template-columns:32px minmax(0,1fr)!important;
+    gap:7px!important;
+    padding-bottom:5px!important;
+  }
+  .sidebar .sidebar-account .account-avatar{
+    width:32px!important;
+    height:32px!important;
+    min-width:32px!important;
+  }
+}
+</style>
+
+
+<style id="account-remove-bottom-line">
+.sidebar .sidebar-account,
+.sidebar .sidebar-account .account-profile,
+.sidebar .sidebar-account .account-info,
+.sidebar .sidebar-account .account-action.account-logout{
+  border-bottom:0!important;
+  box-shadow:none;
+}
+
+.sidebar .sidebar-account .account-profile::before,
+.sidebar .sidebar-account .account-profile::after,
+.sidebar .sidebar-account .account-info::before,
+.sidebar .sidebar-account .account-info::after,
+.sidebar .sidebar-account .account-action.account-logout::before,
+.sidebar .sidebar-account .account-action.account-logout::after{
+  content:none!important;
+  display:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  background:none!important;
+}
+</style>
+
+
+<style id="account-precise-spacing">
+/* FINAL ACCOUNT SPACING — lebih lega, proporsional, tidak berhimpitan */
+.sidebar .sidebar-account{
+  padding:8px 10px!important;
+  min-height:54px!important;
+  border-radius:15px!important;
+  display:flex!important;
+  align-items:center!important;
+}
+
+.sidebar .sidebar-account .account-profile{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:36px minmax(0,1fr)!important;
+  align-items:center!important;
+  gap:10px!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+}
+
+.sidebar .sidebar-account .account-avatar{
+  width:36px!important;
+  height:36px!important;
+  min-width:36px!important;
+  border-radius:10px!important;
+  font-size:14px!important;
+}
+
+.sidebar .sidebar-account .account-info{
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:4px!important;
+  padding:1px 0!important;
+}
+
+.sidebar .sidebar-account .account-info #sidebarAccountName{
+  width:100%!important;
+  margin:0!important;
+  font-size:9.5px!important;
+  line-height:1.15!important;
+  font-weight:900!important;
+  letter-spacing:.05px!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout{
+  width:auto!important;
+  min-width:66px!important;
+  min-height:19px!important;
+  height:19px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:5px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:5px!important;
+  background:transparent!important;
+  color:#cbb9b3!important;
+  font-size:7.5px!important;
+  line-height:1!important;
+  font-weight:800!important;
+  box-shadow:none!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible{
+  background:rgba(255,255,255,.04)!important;
+  color:#f3c86e!important;
+  outline:none!important;
+}
+
+.sidebar .sidebar-account .account-action-icon{
+  width:19px!important;
+  height:19px!important;
+  min-width:19px!important;
+  display:grid!important;
+  place-items:center!important;
+  border:0!important;
+  border-radius:6px!important;
+  background:rgba(255,255,255,.055)!important;
+  color:#eee9e5!important;
+}
+
+.sidebar .sidebar-account .account-action-icon svg{
+  width:11px!important;
+  height:11px!important;
+}
+
+.sidebar .sidebar-account .logout-arrow{
+  display:none!important;
+}
+
+/* Hilangkan seluruh separator/pseudo-element yang tersisa */
+.sidebar .sidebar-account,
+.sidebar .sidebar-account .account-profile,
+.sidebar .sidebar-account .account-info,
+.sidebar .sidebar-account .account-action.account-logout{
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+.sidebar .sidebar-account .account-profile::before,
+.sidebar .sidebar-account .account-profile::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* Tablet / mobile tetap proporsional */
+@media(max-width:1199px){
+  .sidebar .sidebar-account{
+    min-height:52px!important;
+    padding:7px 9px!important;
+  }
+  .sidebar .sidebar-account .account-profile{
+    grid-template-columns:34px minmax(0,1fr)!important;
+    gap:9px!important;
+  }
+  .sidebar .sidebar-account .account-avatar{
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+  }
+}
+</style>
+
+
+<style id="account-power-icon-balanced">
+/* Icon Power dibuat lebih kecil agar proporsional dengan avatar dan teks */
+.sidebar .sidebar-account .account-action.account-logout .account-action-icon{
+  width:17px!important;
+  height:17px!important;
+  min-width:17px!important;
+  border-radius:5px!important;
+  background:rgba(255,255,255,.045)!important;
+  color:#eee9e5!important;
+  display:grid!important;
+  place-items:center!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout .account-action-icon svg{
+  width:9px!important;
+  height:9px!important;
+  stroke-width:2.15!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout{
+  gap:5px!important;
+  min-height:18px!important;
+  height:18px!important;
+  font-size:7.5px!important;
+}
+
+.sidebar .sidebar-account .account-action.account-logout:hover .account-action-icon,
+.sidebar .sidebar-account .account-action.account-logout:focus-visible .account-action-icon{
+  background:rgba(243,199,107,.09)!important;
+  color:#f3c86e!important;
+}
+</style>
+
 </head>
 <body>
 <div id="v21LoadingVeil" aria-hidden="true"><div class="v21-spinner"></div></div>
@@ -2954,7 +3676,12 @@ html{scroll-behavior:smooth}
           <div class="account-info">
             <strong id="sidebarAccountName">Admin • Kasir Only</strong>
             <button class="account-action account-logout" id="sidebarLogoutBtn" type="button" aria-label="Logout">
-              <span class="account-action-icon">↪</span>
+              <span class="account-action-icon" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2.75V11.25" stroke="currentColor" stroke-width="2.15" stroke-linecap="round"/>
+    <path d="M7.05 5.55C5.05 7.15 3.75 9.62 3.75 12.4C3.75 17.23 7.67 21.15 12.5 21.15C17.33 21.15 21.25 17.23 21.25 12.4C21.25 9.62 19.95 7.15 17.95 5.55" stroke="currentColor" stroke-width="2.15" stroke-linecap="round"/>
+  </svg>
+</span>
               <span>Logout</span>
             </button>
           </div>
