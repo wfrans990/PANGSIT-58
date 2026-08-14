@@ -2238,6 +2238,645 @@ html{scroll-behavior:smooth}
 }
 </style>
 
+
+<style id="ipad-pos-responsive-final">
+/* =========================================================
+   iPad / TABLET RESPONSIVE FINAL
+   Tujuan: iPad tidak diperlakukan seperti mobile/collapsed UI.
+   Desktop tetap, mobile tetap, tablet mendapat layout POS penuh.
+   ========================================================= */
+
+@media (min-width:768px) and (max-width:1199px){
+  html,body{
+    width:100%;
+    min-width:0;
+    overflow-x:hidden;
+  }
+
+  /* Sidebar iPad tetap usable, bukan sidebar ikon 72px. */
+  .app{
+    grid-template-columns:190px minmax(0,1fr)!important;
+    min-height:100dvh;
+  }
+
+  .sidebar{
+    width:auto!important;
+    min-width:190px;
+    height:100dvh;
+    padding:16px 10px!important;
+    position:sticky!important;
+    top:0;
+    overflow-y:auto;
+    overflow-x:hidden;
+  }
+
+  .sidebar .brand,
+  .sidebar .brand.brand-centered{
+    justify-content:center;
+  }
+
+  .sidebar .brand-copy{
+    display:block!important;
+  }
+
+  .sidebar .brand.brand-centered{
+    flex-direction:column;
+    text-align:center;
+    gap:7px;
+    padding:3px 5px 18px!important;
+  }
+
+  .sidebar .brand-centered .brand-logo{
+    width:58px!important;
+    height:58px!important;
+    flex-basis:58px!important;
+    border-radius:17px;
+  }
+
+  .sidebar .brand-centered .brand-logo span{
+    font-size:22px;
+  }
+
+  .sidebar .brand-centered .brand-copy b{
+    font-size:14px;
+    line-height:1.15;
+  }
+
+  .sidebar .brand-centered .brand-copy small{
+    font-size:8px;
+  }
+
+  .sidebar .nav{
+    gap:4px;
+  }
+
+  .sidebar .nav button{
+    width:100%;
+    font-size:11px!important;
+    text-align:left!important;
+    padding:10px 10px!important;
+  }
+
+  .sidebar .nav button::first-letter{
+    font-size:inherit;
+  }
+
+  .sidebar .pending-nav-count{
+    position:static!important;
+    float:right;
+    min-width:19px;
+    height:19px;
+    font-size:8px;
+  }
+
+  .sidebar .sidebar-bottom{
+    display:block!important;
+    margin-top:auto;
+  }
+
+  main{
+    min-width:0;
+    width:100%;
+    padding:18px 16px 30px!important;
+  }
+
+  .topbar{
+    min-height:54px;
+    margin-bottom:14px;
+  }
+
+  .topbar h1{
+    font-size:clamp(22px,2.6vw,28px);
+  }
+
+  /* KPI tetap 2x2 agar tidak sesak di iPad portrait. */
+  .stats{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px;
+  }
+
+  /* PENTING: POS tetap dua panel berdampingan di iPad. */
+  .pos{
+    grid-template-columns:minmax(0,1fr) 292px!important;
+    gap:12px!important;
+    align-items:start;
+  }
+
+  .cart{
+    position:sticky!important;
+    top:14px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+
+  .product{
+    min-width:0;
+  }
+
+  .product h3{
+    font-size:10px;
+  }
+
+  .product strong{
+    font-size:11px;
+  }
+
+  .pending-payment-list{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+/* iPad portrait / tablet sempit: tetap dua panel, tetapi cart lebih ramping. */
+@media (min-width:768px) and (max-width:900px){
+  .app{
+    grid-template-columns:178px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    min-width:178px;
+  }
+
+  .sidebar .brand-centered .brand-logo{
+    width:52px!important;
+    height:52px!important;
+    flex-basis:52px!important;
+  }
+
+  .sidebar .brand-centered .brand-copy b{
+    font-size:13px;
+  }
+
+  .sidebar .nav button{
+    font-size:10px!important;
+    padding:9px 9px!important;
+  }
+
+  main{
+    padding:15px 12px 26px!important;
+  }
+
+  .pos{
+    grid-template-columns:minmax(0,1fr) 268px!important;
+    gap:10px!important;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:7px!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+
+  .product-visual{
+    height:82px;
+  }
+
+  .product-art{
+    width:60px;
+    height:60px;
+  }
+
+  .menu-panel-head .panel-head{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .cart-list{
+    padding-left:11px;
+    padding-right:11px;
+  }
+
+  .cart-total,
+  .order-entry-action,
+  .paybox{
+    padding-left:11px;
+    padding-right:11px;
+  }
+}
+
+/* iPad landscape / tablet lebar: manfaatkan ruang horizontal. */
+@media (min-width:901px) and (max-width:1199px){
+  .app{
+    grid-template-columns:204px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    min-width:204px;
+  }
+
+  .pos{
+    grid-template-columns:minmax(0,1fr) 320px!important;
+  }
+
+  .products{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+}
+
+/* Pastikan drawer mobile tidak ikut aktif di iPad. */
+@media (min-width:768px){
+  .mobile-sidebar-backdrop{
+    display:none!important;
+  }
+
+  body.sidebar-open{
+    overflow:auto!important;
+  }
+}
+</style>
+
+
+<style id="ipad-final-professional">
+/* =========================================================
+   iPAD / TABLET FINAL
+   Fokus:
+   - Sidebar selalu terlihat utuh dan tidak ikut terscroll
+   - Tidak ada sidebar mini 72px
+   - POS tetap dua panel
+   - Spacing dan ukuran elemen mengikuti ruang iPad
+   ========================================================= */
+
+@media (min-width:768px) and (max-width:1199px){
+  .app{
+    grid-template-columns:210px minmax(0,1fr)!important;
+    min-height:100dvh;
+  }
+
+  .sidebar{
+    width:210px!important;
+    min-width:210px!important;
+    height:100dvh!important;
+    position:sticky!important;
+    top:0!important;
+    align-self:start;
+    overflow:hidden!important;
+    overflow-y:hidden!important;
+    padding:16px 10px!important;
+  }
+
+  .sidebar .brand,
+  .sidebar .brand.brand-centered{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    text-align:center!important;
+    gap:7px!important;
+    padding:4px 5px 17px!important;
+  }
+
+  .sidebar .brand-centered .brand-logo{
+    width:58px!important;
+    height:58px!important;
+    flex:0 0 58px!important;
+    border-radius:17px!important;
+  }
+
+  .sidebar .brand-centered .brand-logo span{
+    font-size:22px!important;
+  }
+
+  .sidebar .brand-centered .brand-copy{
+    display:block!important;
+    width:100%!important;
+  }
+
+  .sidebar .brand-centered .brand-copy b{
+    font-size:14px!important;
+    line-height:1.15!important;
+    white-space:normal!important;
+  }
+
+  .sidebar .brand-centered .brand-copy small{
+    font-size:8px!important;
+    line-height:1.3!important;
+    white-space:normal!important;
+  }
+
+  .sidebar .nav{
+    display:grid!important;
+    gap:4px!important;
+  }
+
+  .sidebar .nav button{
+    width:100%!important;
+    min-height:39px!important;
+    padding:9px 10px!important;
+    font-size:11px!important;
+    line-height:1.2!important;
+    text-align:left!important;
+  }
+
+  .sidebar .pending-nav-count{
+    position:static!important;
+    float:right!important;
+    min-width:19px!important;
+    height:19px!important;
+    font-size:8px!important;
+  }
+
+  .sidebar .sidebar-bottom{
+    display:block!important;
+    margin-top:auto!important;
+  }
+
+  .sidebar-account{
+    width:100%!important;
+  }
+
+  main{
+    min-width:0!important;
+    width:100%!important;
+    padding:16px 16px 30px!important;
+  }
+
+  .topbar{
+    min-height:54px!important;
+    margin-bottom:13px!important;
+  }
+
+  .topbar h1{
+    font-size:clamp(22px,2.6vw,28px)!important;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+  }
+
+  .pos{
+    grid-template-columns:minmax(0,1fr) 300px!important;
+    gap:12px!important;
+    align-items:start!important;
+  }
+
+  .cart{
+    position:sticky!important;
+    top:70px!important;
+    align-self:start!important;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+
+  .product{
+    min-width:0!important;
+  }
+}
+
+/* iPad portrait: sidebar sedikit lebih ramping, tetapi tetap lengkap. */
+@media (min-width:768px) and (max-width:900px){
+  .app{
+    grid-template-columns:196px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    width:196px!important;
+    min-width:196px!important;
+  }
+
+  .sidebar .brand-centered .brand-logo{
+    width:54px!important;
+    height:54px!important;
+    flex-basis:54px!important;
+  }
+
+  .sidebar .brand-centered .brand-copy b{
+    font-size:13px!important;
+  }
+
+  .sidebar .nav button{
+    min-height:37px!important;
+    padding:8px 9px!important;
+    font-size:10px!important;
+  }
+
+  main{
+    padding:14px 11px 26px!important;
+  }
+
+  .pos{
+    grid-template-columns:minmax(0,1fr) 262px!important;
+    gap:9px!important;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:7px!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+
+  .product-visual{
+    height:80px!important;
+  }
+
+  .product-art{
+    width:58px!important;
+    height:58px!important;
+  }
+
+  .product h3{
+    font-size:9.5px!important;
+  }
+
+  .product strong{
+    font-size:10.5px!important;
+  }
+}
+
+/* iPad landscape: gunakan ruang horizontal untuk menu + cart. */
+@media (min-width:901px) and (max-width:1199px){
+  .app{
+    grid-template-columns:218px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    width:218px!important;
+    min-width:218px!important;
+  }
+
+  .pos{
+    grid-template-columns:minmax(0,1fr) 320px!important;
+  }
+
+  .products{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+}
+
+/* Saat berpindah halaman, sidebar tetap utuh dan tidak ikut terscroll. */
+@media (min-width:768px){
+  .sidebar{
+    overscroll-behavior:contain!important;
+    scrollbar-width:none!important;
+  }
+
+  .sidebar::-webkit-scrollbar{
+    display:none!important;
+  }
+}
+</style>
+
+
+<style id="ipad-fixed-sidebar-scroll-final">
+/* =========================================================
+   iPAD FINAL — SIDEBAR FIXED, ONLY MAIN CONTENT SCROLLS
+   Sidebar kiri tetap diam. Area kanan menjadi satu-satunya
+   area yang melakukan vertical scroll.
+   ========================================================= */
+@media (min-width:768px) and (max-width:1199px){
+  html,
+  body{
+    height:100%;
+    min-height:100%;
+    overflow:hidden;
+  }
+
+  .app{
+    height:100dvh;
+    min-height:0!important;
+    overflow:hidden;
+    grid-template-columns:204px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    position:relative!important;
+    top:auto!important;
+    height:100dvh!important;
+    min-height:0!important;
+    max-height:100dvh;
+    overflow:hidden!important;
+    align-self:stretch;
+    z-index:80;
+  }
+
+  main{
+    min-width:0!important;
+    min-height:0!important;
+    height:100dvh!important;
+    max-height:100dvh;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  /* Jangan biarkan elemen utama membuat halaman luar ikut memanjang. */
+  .page{
+    min-width:0;
+  }
+
+  /* Header tetap berada di atas area kanan ketika konten kanan discroll. */
+  main .topbar{
+    position:sticky;
+    top:0;
+    z-index:120;
+    background:var(--bg);
+    padding-top:8px;
+  }
+
+  /* Cart tetap mengikuti area kanan, bukan viewport kiri. */
+  .pos .cart{
+    position:sticky!important;
+    top:16px;
+    align-self:start;
+  }
+}
+
+/* iPad portrait */
+@media (min-width:768px) and (max-width:900px){
+  .app{
+    grid-template-columns:196px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    width:196px!important;
+    min-width:196px!important;
+  }
+
+  main{
+    padding:15px 12px 26px!important;
+  }
+
+  .pos{
+    grid-template-columns:minmax(0,1fr) 268px!important;
+    gap:10px!important;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+/* iPad landscape */
+@media (min-width:901px) and (max-width:1199px){
+  .app{
+    grid-template-columns:218px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    width:218px!important;
+    min-width:218px!important;
+  }
+
+  .pos{
+    grid-template-columns:minmax(0,1fr) 320px!important;
+  }
+
+  .products{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+}
+</style>
+
+
+<style id="ipad-scroll-header-final">
+/* iPad: header KASIR ikut menjadi bagian dari konten yang discroll.
+   Sidebar kiri tetap diam; hanya seluruh area kanan yang bergerak. */
+@media (min-width:768px) and (max-width:1199px){
+  main .topbar{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    right:auto!important;
+    z-index:auto!important;
+    width:auto!important;
+    height:auto!important;
+    min-height:54px!important;
+    margin-bottom:14px!important;
+    padding-top:0!important;
+    background:transparent!important;
+    border-bottom:0!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+
+  /* Tidak perlu ruang kompensasi untuk header karena header ikut scroll. */
+  #page-kasir,
+  #page-menunggu,
+  #page-produk,
+  #page-transaksi,
+  #page-laporan,
+  #page-pengaturan{
+    padding-top:0!important;
+  }
+
+  /* Panel pesanan tetap berada di area kanan, tetapi header tidak
+     menutupi isi menu ketika pengguna scroll ke bawah. */
+  .pos .cart{
+    position:sticky!important;
+    top:16px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div id="v21LoadingVeil" aria-hidden="true"><div class="v21-spinner"></div></div>
@@ -4895,7 +5534,13 @@ function saveOrderToPendingPayment(){
   updateStats();
   renderPendingPayments();
 
-  alert("Pesanan berhasil disimpan ke Menunggu Pembayaran.");
+  // Setelah pesanan tersimpan, langsung buka antrean Menunggu Pembayaran.
+  // Tidak perlu alert yang mengharuskan kasir menutup pesan terlebih dahulu.
+  navigate("menunggu", true);
+  requestAnimationFrame(()=>{
+    const mainEl=document.querySelector("main");
+    if(mainEl) mainEl.scrollTo({top:0,behavior:"smooth"});
+  });
 }
 
 
