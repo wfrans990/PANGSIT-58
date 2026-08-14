@@ -1861,6 +1861,21 @@ body.page-menunggu-active #newOrderBtn{display:none!important}
   color:var(--ink);
   text-align:center;
   font-weight:900;
+  cursor:default;
+  caret-color:transparent;
+  user-select:none;
+  -webkit-user-select:none;
+  color-scheme:light;
+  pointer-events:none;
+}
+.invoice-qty-control input::-webkit-outer-spin-button,
+.invoice-qty-control input::-webkit-inner-spin-button{
+  -webkit-appearance:none;
+  margin:0;
+}
+.invoice-qty-control input[type="number"]{
+  -moz-appearance:textfield;
+  appearance:textfield;
 }
 @media(max-width:767px){
   .invoice-editor-table{
@@ -6185,9 +6200,9 @@ function renderInvoiceItemsEditor(items){
    </td>
    <td><strong class="invoice-item-price-display">${rupiah(price)}</strong></td>
    <td>
-    <div class="invoice-qty-control">
+    <div class="invoice-qty-control" aria-label="Atur jumlah item">
       <button type="button" class="invoice-qty-minus" onclick="changeInvoiceItemQty(${index},-1)">−</button>
-      <input class="invoice-item-qty" data-index="${index}" type="number" min="1" value="${Math.max(1,Math.floor(+item.qty||1))}" aria-label="Jumlah"></input>
+      <input class="invoice-item-qty" data-index="${index}" type="text" inputmode="none" readonly tabindex="-1" value="${Math.max(1,Math.floor(+item.qty||1))}" aria-label="Jumlah, gunakan tombol kurang dan tambah" aria-readonly="true">
       <button type="button" class="invoice-qty-plus" onclick="changeInvoiceItemQty(${index},1)">+</button>
     </div>
    </td>
