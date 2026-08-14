@@ -4046,6 +4046,139 @@ html{scroll-behavior:smooth}
 }
 </style>
 
+
+<style id="v22-unified-form-palette">
+/* V22 — Unified POS form palette: keep every modal/input/select aligned with the warm premium theme. */
+:root{color-scheme:light;}
+html,body{color-scheme:light;}
+
+/* Never let the browser/OS dark form-control theme override the POS palette. */
+#invoiceEditModal input,
+#invoiceEditModal select,
+#invoiceEditModal textarea,
+#productModal input,
+#productModal select,
+#productModal textarea,
+#masterLoginModal input,
+#masterLoginModal select,
+#masterLoginModal textarea{
+  color-scheme:light!important;
+  color:var(--ink)!important;
+  background:#fff!important;
+  border:1px solid #e4d5ce!important;
+  box-shadow:none;
+}
+
+#invoiceEditModal input:disabled{
+  color:#85766f!important;
+  background:#f7f2ef!important;
+  border-color:#e5d9d3!important;
+}
+
+#invoiceEditModal .invoice-edit-meta-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(150px,.85fr) minmax(190px,1fr);
+  gap:10px;
+  margin-bottom:14px;
+}
+#invoiceEditModal .invoice-edit-meta-grid>div{min-width:0;}
+#invoiceEditModal .invoice-edit-meta-grid label,
+#invoiceEditModal .modal-body>div>label{
+  color:#806e68!important;
+  font-size:10px!important;
+  font-weight:800!important;
+}
+#invoiceEditModal #invoiceEditCashier,
+#invoiceEditModal #invoiceEditTable{
+  min-height:44px!important;
+  padding:10px 12px!important;
+  border-radius:10px!important;
+  font-size:13px!important;
+  font-weight:700;
+  background:#fff!important;
+}
+
+#invoiceEditModal .modal-body > div:has(#invoiceEditPaid) + div{
+  background:#fffaf7!important;
+  border:1px solid #eaded8!important;
+  border-radius:12px!important;
+}
+
+#invoiceEditModal .modal-body > div:has(#invoiceEditPaid) + div .row{
+  color:#5e4b44;
+}
+
+#invoiceEditModal .modal-body > div:has(#invoiceEditPaid) + div .row.total{
+  color:#2d201c;
+}
+
+#invoiceEditModal .invoice-editor-table{
+  background:#fff;
+  border-color:#e7ddd7;
+}
+#invoiceEditModal .invoice-editor-table th{
+  background:#fbf7f4!important;
+  color:#896d63!important;
+}
+#invoiceEditModal .invoice-editor-table tr:hover td{background:#fffaf7;}
+#invoiceEditModal .invoice-editor-table select{
+  background:#fff!important;
+  color:#352520!important;
+  border-color:#e2d4ce!important;
+}
+
+#invoiceEditModal #invoiceEditPaid{
+  min-height:47px!important;
+  padding:10px 12px!important;
+  border-radius:10px!important;
+  background:#fff!important;
+  color:#2d201c!important;
+  font-size:16px!important;
+  font-weight:800;
+}
+#invoiceEditModal .invoice-edit-summary{
+  background:#fffaf7!important;
+  border:1px solid #eaded8!important;
+}
+
+#invoiceEditModal .modal-foot{
+  background:#fffaf8!important;
+}
+
+/* Product modal uses exactly the same visual language. */
+#productModal .form input,
+#productModal .form select{
+  min-height:44px;
+  background:#fff!important;
+  color:#2d201c!important;
+  border-color:#e2d4ce!important;
+}
+#productModal .form input:focus,
+#productModal .form select:focus,
+#invoiceEditModal input:focus,
+#invoiceEditModal select:focus{
+  border-color:#c96b64!important;
+  box-shadow:0 0 0 3px rgba(180,35,42,.08)!important;
+}
+
+/* Payment amount area stays green only for payment status/result; inputs remain neutral. */
+#pendingPayAmount{
+  color:#2d201c!important;
+  background:transparent!important;
+  color-scheme:light!important;
+}
+
+@media(max-width:767px){
+  #invoiceEditModal .invoice-edit-meta-grid{
+    grid-template-columns:1fr!important;
+    gap:8px;
+  }
+  #invoiceEditModal #invoiceEditCashier,
+  #invoiceEditModal #invoiceEditTable{
+    min-height:44px!important;
+  }
+}
+</style>
 </head>
 <body>
 <div id="v21LoadingVeil" aria-hidden="true"><div class="v21-spinner"></div></div>
@@ -4184,7 +4317,7 @@ html{scroll-behavior:smooth}
           <option value="09">Meja 09</option><option value="10">Meja 10</option><option value="11">Meja 11</option><option value="12">Meja 12</option>
           <option value="13">Meja 13</option><option value="14">Meja 14</option><option value="15">Meja 15</option><option value="16">Meja 16</option>
           <option value="17">Meja 17</option><option value="18">Meja 18</option><option value="19">Meja 19</option><option value="20">Meja 20</option>
-          <option value="TAKEAWAY">Takeaway</option>
+          <option value="TAKEAWAY">Take Away</option>
         </select>
       </div>
       <div class="cart-list" id="cartList"></div>
