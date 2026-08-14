@@ -115,7 +115,7 @@ main{min-width:0;padding:22px clamp(16px,2.5vw,34px) 36px}
 .mobile-account-tools{display:none}
 
 /* ---------- MODALS / RECEIPT ---------- */
-.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(38,9,11,.56);backdrop-filter:blur(7px)}.modal.show{display:flex}.modal-card{width:min(560px,100%);max-height:calc(100dvh - 36px);overflow:auto;border:1px solid rgba(255,255,255,.75);border-radius:19px;background:#fff;box-shadow:0 30px 90px rgba(42,8,10,.28)}.modal-body{padding:15px}.modal-foot{display:flex;justify-content:flex-end;gap:7px;padding:11px 15px;border-top:1px solid var(--line);background:inherit}.modal-foot .btn{min-width:100px}.receipt{width:80mm;margin:auto;padding:10px;background:#fff;color:#000;font-family:monospace}.receipt h2{text-align:center;margin:0 0 4px}.receipt .center{text-align:center}.receipt hr{border:0;border-top:1px dashed #000}.receipt-row{display:flex;justify-content:space-between;gap:10px}
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(38,9,11,.56);backdrop-filter:blur(7px)}.modal.show{display:flex}.modal-card{width:min(560px,100%);max-height:calc(100dvh - 36px);overflow:auto;border:1px solid rgba(255,255,255,.75);border-radius:19px;background:#fff;box-shadow:0 30px 90px rgba(42,8,10,.28)}.modal-body{padding:15px}.modal-foot{display:flex;justify-content:flex-end;gap:7px;padding:11px 15px;border-top:1px solid var(--line);background:inherit}.modal-foot .btn{min-width:100px}.receipt{width:80mm;margin:auto;padding:10px;background:#fff;color:#000;font-family:monospace}.receipt h2{text-align:center;margin:0 0 4px}.receipt .center{text-align:center}.receipt hr{border:0;border-top:1px dashed #000}.receipt-row{display:flex;justify-content:space-between;gap:10px}.receipt-paid{margin-top:6px}.receipt-paid-title{text-align:center;font-weight:900;font-size:16px;margin:8px 0 10px}.receipt .center{line-height:1.35}
 #printVerificationModal .pending-pay-summary{display:grid;grid-template-columns:1fr auto;gap:6px 12px}
 #billReviewItems .bill-crosscheck{cursor:pointer}
 #confirmPrintBill:disabled{cursor:not-allowed;filter:grayscale(.2)}
@@ -6328,11 +6328,28 @@ function prepareBillPdfName(t){
 }
 
 function renderReceipt(t){
-
-
   const d=new Date(t.date);
   const tableLabel=t.table==="TAKEAWAY"?"Takeaway":(t.table?`Meja ${t.table}`:"Belum dipilih");
-  document.getElementById("printArea").innerHTML=`<div class="receipt"><h2>${settings.storeName}</h2><div class="center">Terima kasih</div><hr><div>${t.invoice}</div><div>${d.toLocaleString("id-ID")}</div><div><b>MEJA: ${tableLabel}</b></div><hr>${(t.items||[]).map(i=>`<div>${i.name}<br><div class="receipt-row"><span>${i.qty} x ${rupiah(i.price)}</span><span>${rupiah(i.qty*i.price)}</span></div></div>`).join("<br>")}<hr><div class="receipt-row"><span>TOTAL</span><b>${rupiah(t.total)}</b></div><div class="receipt-row"><span>Bayar</span><b>${rupiah(t.paid)}</b></div><div class="receipt-row"><span>Kembali</span><b>${rupiah(t.change)}</b></div><hr><div class="center">Simpan struk ini sebagai bukti pembayaran.</div></div>`;
+  const pad=n=>String(n).padStart(2,"0");
+  const receiptDate=`${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} WIB`;
+  const isPaid=Number(t.paid||0)>0 || t.paymentMethod==="bank";
+  const paymentLabel=t.paymentMethod==="bank"?`TRANSFER • ${t.bankName||"BANK"}`:"CASH";
+  const title=isPaid?"Bukti Pembayaran":"Bill Pesanan";
+  const paymentSection=isPaid?`<div class="receipt-paid"><div class="receipt-paid-title">LUNAS</div><div class="receipt-row"><span>Metode Bayar</span><b>${paymentLabel}</b></div><div class="receipt-row"><span>Bayar</span><b>${rupiah(t.paid||0)}</b></div><div class="receipt-row"><span>Kembali</span><b>${rupiah(t.change||0)}</b></div></div><hr><div class="center">Pembayaran telah diterima.</div><div class="center">Simpan struk ini sebagai bukti pembukuan.</div>`:`<div class="center">Belum dibayar.</div>`;
+
+  document.getElementById("printArea").innerHTML=`<div class="receipt">
+    <h2>${settings.storeName}</h2>
+    <div class="center">${title}</div>
+    <hr>
+    <div>${t.invoice}</div>
+    <div>${receiptDate}</div>
+    <div><b>MEJA: ${tableLabel}</b></div>
+    <hr>
+    ${(t.items||[]).map(i=>`<div>${i.name}<br><div class="receipt-row"><span>${i.qty} x ${rupiah(i.price)}</span><span>${rupiah(i.qty*i.price)}</span></div></div>`).join("<br>")}
+    <hr>
+    <div class="receipt-row"><span>TOTAL</span><b>${rupiah(t.total)}</b></div>
+    ${paymentSection}
+  </div>`;
 }
 
 function showReceipt(t){
