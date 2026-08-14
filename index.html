@@ -383,6 +383,19 @@ main{min-width:0;padding:22px clamp(16px,2.5vw,34px) 36px}
   font-size:11px;
   line-height:1.1;
 }
+.pending-table-badge.pending-takeaway-badge{
+  min-width:72px;
+  padding-left:7px;
+  padding-right:7px;
+}
+.pending-table-badge.pending-takeaway-badge strong{
+  font-size:9px;
+  line-height:1.05;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  max-width:48px;
+  margin:0 auto;
+}
 .pending-meta{
   min-width:0;
 }
@@ -555,7 +568,7 @@ body.page-menunggu-active #newOrderBtn{display:none!important}
     border-radius:15px;
   }
   .pending-card-head{
-    grid-template-columns:48px minmax(0,1fr) auto;
+    grid-template-columns:max-content minmax(0,1fr) max-content;
     gap:9px;
     padding:11px 11px 10px;
   }
@@ -563,6 +576,19 @@ body.page-menunggu-active #newOrderBtn{display:none!important}
     min-width:48px;
     padding:6px 5px;
     border-radius:9px;
+  }
+  .pending-table-badge.pending-takeaway-badge{
+    min-width:54px;
+    width:54px;
+    max-width:54px;
+  }
+  .pending-table-badge.pending-takeaway-badge strong{
+    font-size:8px;
+    line-height:1.05;
+    white-space:normal;
+    overflow-wrap:normal;
+    word-break:normal;
+    max-width:42px;
   }
   .pending-table-badge small{
     font-size:6px;
@@ -620,8 +646,16 @@ body.page-menunggu-active #newOrderBtn{display:none!important}
   .pending-payment-panel .panel-head h2{font-size:17px}
   .pending-subtitle{font-size:8px}
   .pending-head-actions .btn{font-size:8px}
-  .pending-card-head{grid-template-columns:44px minmax(0,1fr) auto;gap:7px}
+  .pending-card-head{
+    grid-template-columns:max-content minmax(0,1fr) max-content;
+    gap:7px;
+  }
   .pending-table-badge{min-width:44px}
+  .pending-table-badge.pending-takeaway-badge{
+    min-width:52px;
+    width:52px;
+    max-width:52px;
+  }
   .pending-invoice{font-size:10px}
   .pending-time{font-size:6.5px}
   .pending-total-value{font-size:15px}
@@ -3599,6 +3633,419 @@ html{scroll-behavior:smooth}
 }
 </style>
 
+
+<style id="ipad-pending-payment-final-fix">
+/* =========================================================
+   iPAD / TABLET — MENUNGGU PEMBAYARAN FINAL
+   Tujuan:
+   - Tidak ada kartu yang terjepit/terlalu sempit
+   - Header dan tombol tetap proporsional
+   - Card invoice memakai lebar penuh pada portrait
+   - Landscape boleh 2 kolom jika ruang benar-benar cukup
+   - Tidak mengubah fungsi / JavaScript existing
+   ========================================================= */
+
+@media (min-width:768px) and (max-width:900px){
+  #page-menunggu{
+    width:100%;
+  }
+
+  #page-menunggu .pending-payment-panel{
+    width:100%;
+    max-width:none;
+    border-radius:18px;
+  }
+
+  #page-menunggu .pending-payment-panel>.panel-head{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-start;
+    gap:11px;
+    padding:16px 16px 14px;
+    min-height:0;
+  }
+
+  #page-menunggu .pending-head-copy{
+    width:100%;
+  }
+
+  #page-menunggu .pending-payment-panel .panel-head h2{
+    font-size:21px;
+    line-height:1.08;
+    max-width:100%;
+    white-space:normal;
+  }
+
+  #page-menunggu .pending-subtitle{
+    max-width:100%;
+    font-size:9px;
+    line-height:1.45;
+  }
+
+  #page-menunggu .pending-head-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);
+    gap:8px;
+    justify-content:stretch;
+  }
+
+  #page-menunggu .pending-head-actions .btn{
+    width:100%;
+    min-width:0!important;
+    min-height:40px;
+    padding:8px 10px;
+    font-size:9px;
+  }
+
+  #page-menunggu .pending-payment-list{
+    display:grid;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:10px;
+    padding:11px;
+    background:#f8f4f1;
+  }
+
+  #page-menunggu .pending-card{
+    width:100%;
+    min-width:0;
+    border-radius:15px;
+  }
+
+  #page-menunggu .pending-card-head{
+    grid-template-columns:54px minmax(0,1fr) auto;
+    gap:10px;
+    padding:11px 12px;
+  }
+
+  #page-menunggu .pending-table-badge{
+    min-width:54px;
+  }
+
+  #page-menunggu .pending-invoice{
+    font-size:11px;
+  }
+
+  #page-menunggu .pending-time{
+    font-size:7.5px;
+  }
+
+  #page-menunggu .pending-items{
+    min-height:46px;
+    padding:10px 12px 9px;
+  }
+
+  #page-menunggu .pending-card-bottom{
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:end;
+    gap:12px;
+    padding:11px 12px 12px;
+  }
+
+  #page-menunggu .pending-actions{
+    width:auto;
+    justify-content:flex-end;
+  }
+
+  #page-menunggu .pending-actions .btn{
+    flex:0 1 auto;
+    min-width:105px;
+    min-height:38px;
+  }
+
+  #page-menunggu .pending-actions .btn.success{
+    min-width:126px;
+  }
+}
+
+/* iPad landscape / tablet lebar:
+   dua kartu hanya jika ruang benar-benar mencukupi. */
+@media (min-width:901px) and (max-width:1199px){
+  #page-menunggu .pending-payment-list{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px;
+    padding:14px;
+  }
+
+  #page-menunggu .pending-card{
+    min-width:0;
+  }
+
+  #page-menunggu .pending-payment-panel>.panel-head{
+    grid-template-columns:minmax(0,1fr) auto;
+    padding:16px 18px;
+    gap:14px;
+  }
+
+  #page-menunggu .pending-payment-panel .panel-head h2{
+    font-size:22px;
+  }
+
+  #page-menunggu .pending-head-actions{
+    max-width:270px;
+  }
+
+  #page-menunggu .pending-head-actions .btn{
+    min-width:0!important;
+  }
+}
+
+/* Hindari invoice card menyusut karena isi panjang. */
+#page-menunggu .pending-card,
+#page-menunggu .pending-card-main,
+#page-menunggu .pending-meta,
+#page-menunggu .pending-items,
+#page-menunggu .pending-card-bottom{
+  box-sizing:border-box;
+  min-width:0;
+}
+
+#page-menunggu .pending-card *{
+  max-width:100%;
+}
+
+/* Tombol tetap berada di dalam card dan tidak menabrak total. */
+#page-menunggu .pending-card-bottom{
+  overflow:hidden;
+}
+
+#page-menunggu .pending-total-value{
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* Tablet sempit: tombol aksi selalu aman di bawah total. */
+@media (min-width:768px) and (max-width:820px){
+  #page-menunggu .pending-card-bottom{
+    grid-template-columns:1fr;
+    gap:9px;
+  }
+
+  #page-menunggu .pending-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+  }
+
+  #page-menunggu .pending-actions .btn,
+  #page-menunggu .pending-actions .btn.success{
+    width:100%;
+    min-width:0;
+  }
+}
+</style>
+
+
+<style id="pending-badge-consistent-final">
+/* Semua badge meja dan Take Away memiliki ukuran fisik yang sama */
+.pending-table-badge,
+.pending-table-badge.pending-takeaway-badge{
+  width:54px!important;
+  min-width:54px!important;
+  max-width:54px!important;
+  height:42px!important;
+  min-height:42px!important;
+  max-height:42px!important;
+  box-sizing:border-box!important;
+  padding:5px 4px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:2px!important;
+  overflow:hidden!important;
+}
+
+.pending-table-badge small{
+  display:block!important;
+  font-size:6px!important;
+  line-height:1!important;
+  margin:0!important;
+}
+
+.pending-table-badge strong{
+  display:block!important;
+  max-width:100%!important;
+  margin:0!important;
+  text-align:center!important;
+  font-size:9px!important;
+  line-height:1.05!important;
+  white-space:normal!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+}
+
+.pending-table-badge.pending-takeaway-badge strong{
+  max-width:44px!important;
+  font-size:8px!important;
+  line-height:1.02!important;
+  white-space:normal!important;
+}
+
+/* Tablet dan mobile tetap menggunakan ukuran badge yang sama */
+@media(max-width:1199px){
+  .pending-table-badge,
+  .pending-table-badge.pending-takeaway-badge{
+    width:54px!important;
+    min-width:54px!important;
+    max-width:54px!important;
+    height:42px!important;
+    min-height:42px!important;
+    max-height:42px!important;
+  }
+}
+
+@media(max-width:370px){
+  .pending-table-badge,
+  .pending-table-badge.pending-takeaway-badge{
+    width:52px!important;
+    min-width:52px!important;
+    max-width:52px!important;
+    height:42px!important;
+    min-height:42px!important;
+    max-height:42px!important;
+  }
+
+  .pending-table-badge.pending-takeaway-badge strong{
+    max-width:42px!important;
+    font-size:7.5px!important;
+  }
+}
+</style>
+
+
+<style id="pending-badge-font-bigger">
+/* Ukuran badge tetap sama, hanya tipografi dibuat lebih mudah dibaca */
+.pending-table-badge small{
+  font-size:7px!important;
+  line-height:1.05!important;
+  font-weight:800!important;
+}
+
+.pending-table-badge strong{
+  font-size:10.5px!important;
+  line-height:1.05!important;
+  font-weight:900!important;
+}
+
+.pending-table-badge.pending-takeaway-badge strong{
+  font-size:9px!important;
+  line-height:1.02!important;
+  font-weight:900!important;
+  max-width:46px!important;
+}
+
+/* Mobile */
+@media(max-width:1199px){
+  .pending-table-badge small{
+    font-size:7px!important;
+  }
+
+  .pending-table-badge strong{
+    font-size:10px!important;
+  }
+
+  .pending-table-badge.pending-takeaway-badge strong{
+    font-size:8.8px!important;
+  }
+}
+
+@media(max-width:370px){
+  .pending-table-badge small{
+    font-size:6.8px!important;
+  }
+
+  .pending-table-badge strong{
+    font-size:9.5px!important;
+  }
+
+  .pending-table-badge.pending-takeaway-badge strong{
+    font-size:8.5px!important;
+  }
+}
+</style>
+
+
+<style id="pending-desktop-alignment-final">
+/* =========================================================
+   PENDING PAYMENT — DESKTOP ALIGNMENT
+   Solusi: setiap card menjadi flex column.
+   Main mengisi ruang yang tersedia, sehingga bagian Total/Aksi
+   selalu duduk pada baseline yang sama dalam satu row.
+   ========================================================= */
+
+@media (min-width:1200px){
+  #page-menunggu .pending-payment-list{
+    align-items:stretch!important;
+    grid-auto-rows:1fr!important;
+  }
+
+  #page-menunggu .pending-card{
+    height:100%!important;
+    min-height:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+
+  #page-menunggu .pending-card-main{
+    flex:1 1 auto!important;
+    display:flex!important;
+    flex-direction:column!important;
+    min-height:0!important;
+  }
+
+  #page-menunggu .pending-card-head{
+    flex:0 0 auto!important;
+  }
+
+  #page-menunggu .pending-items{
+    flex:1 1 auto!important;
+    min-height:58px!important;
+    align-content:flex-start!important;
+  }
+
+  #page-menunggu .pending-card-bottom{
+    flex:0 0 auto!important;
+    min-height:82px!important;
+    box-sizing:border-box!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    align-items:center!important;
+    gap:16px!important;
+    padding:12px 14px 14px!important;
+    margin-top:auto!important;
+  }
+
+  #page-menunggu .pending-actions{
+    align-items:center!important;
+    justify-content:flex-end!important;
+    min-width:0!important;
+  }
+
+  #page-menunggu .pending-actions .btn{
+    min-height:38px!important;
+  }
+
+  #page-menunggu .pending-actions .btn.success{
+    min-width:126px!important;
+  }
+}
+
+/* Desktop yang sedikit lebih kecil: tetap equal-height, tetapi
+   tidak memaksa ruang kosong berlebihan. */
+@media (min-width:1200px) and (max-width:1399px){
+  #page-menunggu .pending-card-bottom{
+    min-height:78px!important;
+    gap:12px!important;
+  }
+
+  #page-menunggu .pending-items{
+    min-height:54px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div id="v21LoadingVeil" aria-hidden="true"><div class="v21-spinner"></div></div>
@@ -4747,8 +5194,9 @@ function renderPendingPayments(){
  }
 
  list.innerHTML=pendingPayments.map(p=>{
-  const tableRaw=p.table==="TAKEAWAY"?"Takeaway":(p.table?`Meja ${escapeHtml(p.table)}`:"Belum Dipilih");
-  const tableShort=p.table==="TAKEAWAY"?"TAKE":(p.table?escapeHtml(p.table):"—");
+  const isTakeaway=p.table==="TAKEAWAY";
+  const tableRaw=isTakeaway?"Take Away":(p.table?`Meja ${escapeHtml(p.table)}`:"Belum Dipilih");
+  const tableShort=isTakeaway?"TAKE AWAY":(p.table?escapeHtml(p.table):"—");
   const time=formatWIBTime(new Date(p.date));
   const items=p.items.map(i=>`<span class="pending-item-chip">${escapeHtml(i.name)} × ${i.qty}</span>`).join("");
   const printed=!!p.billPrinted;
@@ -4761,8 +5209,8 @@ function renderPendingPayments(){
   return `<article class="pending-card">
     <div class="pending-card-main">
       <div class="pending-card-head">
-        <div class="pending-table-badge" title="${tableRaw}">
-          <small>Meja</small>
+        <div class="pending-table-badge${isTakeaway ? " pending-takeaway-badge" : ""}" title="${tableRaw}">
+          ${isTakeaway ? "" : "<small>Meja</small>"}
           <strong>${tableShort}</strong>
         </div>
         <div class="pending-meta">
@@ -4953,7 +5401,7 @@ function openPendingPayment(id){
  if(!p)return alert("Pesanan menunggu pembayaran tidak ditemukan.");
  activePendingPaymentId=id;
  document.getElementById("pendingPayInvoice").textContent=p.invoice;
- document.getElementById("pendingPayTable").textContent=p.table==="TAKEAWAY"?"Takeaway":(p.table?`Meja ${p.table}`:"Meja Belum Dipilih");
+ document.getElementById("pendingPayTable").textContent=p.table==="TAKEAWAY"?"Take Away":(p.table?`Meja ${p.table}`:"Meja Belum Dipilih");
  document.getElementById("pendingPayTotal").textContent=rupiah(p.total);
  document.getElementById("pendingPayItems").innerHTML=p.items.map(i=>`<li><b>${escapeHtml(i.name)}</b><span>${i.qty} × ${rupiah(i.price)}</span></li>`).join("");
  document.getElementById("pendingPayAmount").value="";
@@ -6153,7 +6601,7 @@ function formatWIBTime(date=new Date()){
    minute:"2-digit",
    second:"2-digit",
    hour12:false
- }).format(date)+" WIB";
+ }).format(date).replace(/\./g, ":")+" WIB";
 }
 function updateLiveClock(){
    const d=new Date();
