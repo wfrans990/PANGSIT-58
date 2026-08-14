@@ -4194,6 +4194,328 @@ html,body{color-scheme:light;}
   }
 }
 </style>
+
+<style id="v22-payment-bank-selection-polish">
+/* =========================================================
+   V22 — PAYMENT BANK ACCOUNT
+   Lebih jelas, mudah dibaca, dan indikator rekening aktif tegas.
+   ========================================================= */
+
+.payment-bank-accounts{
+  gap:8px;
+  max-height:180px;
+  padding:2px;
+}
+
+.payment-bank-account{
+  position:relative;
+  min-height:62px !important;
+  padding:10px 12px !important;
+  border:1px solid #e4d6d0 !important;
+  border-radius:12px !important;
+  background:#fff !important;
+  box-shadow:0 2px 7px rgba(52,31,24,.025);
+  transition:
+    border-color .16s ease,
+    background .16s ease,
+    box-shadow .16s ease,
+    transform .16s ease;
+}
+
+.payment-bank-account:hover{
+  border-color:#d9b6ad !important;
+  background:#fffaf8 !important;
+  transform:translateY(-1px);
+}
+
+.payment-bank-account.active{
+  border:2px solid #b5242b !important;
+  background:#fff6f4 !important;
+  box-shadow:
+    0 0 0 3px rgba(181,36,43,.10),
+    0 7px 18px rgba(181,36,43,.08) !important;
+}
+
+/* Garis aksen di sisi kiri untuk membuat rekening aktif langsung terbaca */
+.payment-bank-account.active::before{
+  content:"";
+  position:absolute;
+  left:-2px;
+  top:8px;
+  bottom:8px;
+  width:4px;
+  border-radius:0 4px 4px 0;
+  background:#b5242b;
+}
+
+.bank-account-main{
+  min-width:0;
+  padding-left:2px;
+}
+
+.bank-account-main strong{
+  display:block;
+  color:#281d19 !important;
+  font-size:13px !important;
+  font-weight:950 !important;
+  line-height:1.2 !important;
+  letter-spacing:.1px;
+}
+
+.bank-account-main span{
+  display:block;
+  margin-top:4px !important;
+  color:#59453e !important;
+  font-size:11px !important;
+  font-weight:750 !important;
+  line-height:1.2 !important;
+  letter-spacing:.15px;
+}
+
+.bank-account-main small{
+  display:block;
+  margin-top:3px !important;
+  color:#8a7770 !important;
+  font-size:9px !important;
+  line-height:1.2 !important;
+}
+
+.bank-account-check{
+  width:25px !important;
+  height:25px !important;
+  flex:0 0 25px !important;
+  display:grid !important;
+  place-items:center !important;
+  border:2px solid #ded1cb !important;
+  border-radius:50% !important;
+  background:#fff !important;
+  color:transparent !important;
+  font-size:13px !important;
+  font-weight:950 !important;
+  box-shadow:inset 0 0 0 1px rgba(52,31,24,.03);
+}
+
+.payment-bank-account.active .bank-account-check{
+  border-color:#b5242b !important;
+  background:#b5242b !important;
+  color:#fff !important;
+  box-shadow:0 3px 8px rgba(181,36,43,.24) !important;
+}
+
+/* Teks kecil di area rekening aktif tanpa mengubah struktur HTML */
+.payment-bank-account.active .bank-account-main::after{
+  content:"Rekening dipilih";
+  display:block;
+  width:max-content;
+  margin-top:4px;
+  padding:2px 6px;
+  border-radius:999px;
+  background:#f5d9d5;
+  color:#9c1f25;
+  font-size:7px;
+  font-weight:900;
+  line-height:1.2;
+}
+
+/* Mobile tetap nyaman disentuh dan tidak terlalu padat */
+@media(max-width:767px){
+  .payment-bank-accounts{
+    gap:7px;
+    max-height:190px;
+    padding:2px;
+  }
+
+  .payment-bank-account{
+    min-height:62px !important;
+    padding:10px 11px !important;
+  }
+
+  .bank-account-main strong{
+    font-size:12px !important;
+  }
+
+  .bank-account-main span{
+    font-size:10.5px !important;
+  }
+
+  .bank-account-main small{
+    font-size:8.5px !important;
+  }
+
+  .bank-account-check{
+    width:24px !important;
+    height:24px !important;
+    flex-basis:24px !important;
+  }
+}
+</style>
+
+<style id="v23-green-bank-selection">
+/* V23 — GREEN ACTIVE BANK + SMALLER INACTIVE ACCOUNTS */
+.payment-bank-accounts{
+  gap:6px !important;
+  padding:2px !important;
+}
+
+/* Rekening yang belum dipilih dibuat lebih kecil dan samar */
+.payment-bank-account:not(.active){
+  min-height:46px !important;
+  padding:7px 9px !important;
+  opacity:.52;
+  transform:scale(.96);
+  transform-origin:center;
+  border:1px solid #e4e0dc !important;
+  background:#fafafa !important;
+  box-shadow:none !important;
+}
+
+.payment-bank-account:not(.active):hover{
+  opacity:.78;
+  border-color:#cfd8d2 !important;
+  background:#f7faf8 !important;
+  transform:scale(.97);
+}
+
+.payment-bank-account:not(.active) .bank-account-main strong{
+  font-size:10px !important;
+  color:#756b66 !important;
+  font-weight:800 !important;
+}
+
+.payment-bank-account:not(.active) .bank-account-main span{
+  margin-top:2px !important;
+  font-size:8.5px !important;
+  color:#8d817b !important;
+  font-weight:650 !important;
+}
+
+.payment-bank-account:not(.active) .bank-account-main small{
+  margin-top:1px !important;
+  font-size:7px !important;
+  color:#a19590 !important;
+}
+
+.payment-bank-account:not(.active) .bank-account-check{
+  width:18px !important;
+  height:18px !important;
+  flex-basis:18px !important;
+  border-width:1px !important;
+  font-size:9px !important;
+}
+
+/* Rekening yang dipilih menjadi fokus utama */
+.payment-bank-account.active{
+  min-height:76px !important;
+  padding:12px 13px !important;
+  opacity:1 !important;
+  transform:scale(1.015);
+  z-index:2;
+  border:2px solid #247546 !important;
+  background:#f1fbf4 !important;
+  box-shadow:
+    0 0 0 3px rgba(36,117,70,.12),
+    0 8px 22px rgba(36,117,70,.12) !important;
+}
+
+.payment-bank-account.active:hover{
+  transform:scale(1.015);
+  border-color:#1d6d3d !important;
+  background:#eefaf1 !important;
+}
+
+.payment-bank-account.active::before{
+  left:-2px !important;
+  top:8px !important;
+  bottom:8px !important;
+  width:5px !important;
+  background:#247546 !important;
+}
+
+.payment-bank-account.active .bank-account-main strong{
+  font-size:14px !important;
+  color:#174f31 !important;
+  font-weight:950 !important;
+}
+
+.payment-bank-account.active .bank-account-main span{
+  margin-top:4px !important;
+  font-size:12px !important;
+  color:#315e45 !important;
+  font-weight:800 !important;
+}
+
+.payment-bank-account.active .bank-account-main small{
+  margin-top:3px !important;
+  font-size:9px !important;
+  color:#64816f !important;
+}
+
+.payment-bank-account.active .bank-account-check{
+  width:28px !important;
+  height:28px !important;
+  flex-basis:28px !important;
+  border:2px solid #247546 !important;
+  background:#247546 !important;
+  color:#fff !important;
+  font-size:14px !important;
+  box-shadow:0 4px 10px rgba(36,117,70,.25) !important;
+}
+
+.payment-bank-account.active .bank-account-main::after{
+  content:"REKENING DIPILIH" !important;
+  display:block;
+  width:max-content;
+  margin-top:5px;
+  padding:3px 7px;
+  border-radius:999px;
+  background:#dcefe2;
+  color:#1d6d3d;
+  font-size:7px;
+  font-weight:950;
+  letter-spacing:.25px;
+  line-height:1.2;
+}
+
+@media(max-width:767px){
+  .payment-bank-accounts{gap:5px !important;}
+
+  .payment-bank-account:not(.active){
+    min-height:43px !important;
+    padding:6px 8px !important;
+    transform:scale(.95);
+  }
+
+  .payment-bank-account.active{
+    min-height:72px !important;
+    padding:11px 11px !important;
+    transform:scale(1.01);
+  }
+
+  .payment-bank-account.active .bank-account-main strong{font-size:12.5px !important;}
+  .payment-bank-account.active .bank-account-main span{font-size:10.5px !important;}
+  .payment-bank-account.active .bank-account-main small{font-size:8px !important;}
+  .payment-bank-account.active .bank-account-check{
+    width:25px !important;height:25px !important;flex-basis:25px !important;font-size:12px !important;
+  }
+  .payment-bank-account.active .bank-account-main::after{font-size:6.5px;padding:2px 6px;}
+}
+</style>
+
+
+<style id="v23-payment-bank-active-final">
+/* V23 — Active account: black text + no "Rekening Dipilih" label */
+.payment-bank-account.active .bank-account-main strong,
+.payment-bank-account.active .bank-account-main span,
+.payment-bank-account.active .bank-account-main small{
+  color:#000 !important;
+}
+
+.payment-bank-account.active .bank-account-main::after{
+  content:none !important;
+  display:none !important;
+}
+</style>
+
 </head>
 <body>
 <div id="v21LoadingVeil" aria-hidden="true"><div class="v21-spinner"></div></div>
@@ -6951,6 +7273,205 @@ window.addEventListener("afterprint",()=>{
  document.querySelectorAll(".page").forEach(p=>observer.observe(p,{attributes:true}));
 })();
 </script>
+
+
+<style id="v12-green-bank-account-selection">
+/* =========================================================
+   V12 — GREEN BANK ACCOUNT SELECTION
+   Non-active accounts are visually subdued.
+   Active account is slightly larger, greener and dominant.
+   ========================================================= */
+
+.payment-bank-accounts{
+  gap:7px;
+  padding:2px 2px 4px;
+  overflow:visible;
+}
+
+.payment-bank-account{
+  position:relative;
+  min-height:52px;
+  padding:8px 10px;
+  border:1px solid #e6e1dc;
+  border-radius:11px;
+  background:#faf9f7;
+  color:#817770;
+  opacity:.58;
+  filter:saturate(.72);
+  transform:scale(.985);
+  transform-origin:center;
+  transition:
+    transform .16s ease,
+    opacity .16s ease,
+    filter .16s ease,
+    background .16s ease,
+    border-color .16s ease,
+    box-shadow .16s ease;
+  box-shadow:none;
+  z-index:1;
+}
+
+.payment-bank-account:hover{
+  opacity:.78;
+  filter:saturate(.9);
+  background:#fff;
+  border-color:#d9d2cc;
+  transform:scale(.995);
+}
+
+.payment-bank-account.active{
+  min-height:58px;
+  padding:9px 11px;
+  border:1.5px solid #2d8a52;
+  background:linear-gradient(135deg,#f2fbf5 0%,#ffffff 72%);
+  color:#245b3a;
+  opacity:1;
+  filter:none;
+  transform:scale(1.012);
+  box-shadow:
+    0 7px 18px rgba(36,117,70,.13),
+    0 0 0 3px rgba(45,138,82,.08);
+  z-index:3;
+}
+
+.payment-bank-account.active:hover{
+  transform:scale(1.018);
+  border-color:#247546;
+  box-shadow:
+    0 9px 22px rgba(36,117,70,.16),
+    0 0 0 3px rgba(45,138,82,.09);
+}
+
+.bank-account-main{
+  min-width:0;
+  flex:1;
+}
+
+.bank-account-main strong{
+  display:block;
+  color:#4b403b;
+  font-size:10px;
+  line-height:1.15;
+  font-weight:900;
+  transition:.16s ease;
+}
+
+.bank-account-main span{
+  display:block;
+  margin-top:2px;
+  color:#8d817b;
+  font-size:8.5px;
+  line-height:1.15;
+  transition:.16s ease;
+}
+
+.bank-account-main small{
+  display:block;
+  margin-top:2px;
+  color:#a29690;
+  font-size:7.5px;
+  line-height:1.15;
+  transition:.16s ease;
+}
+
+.payment-bank-account.active .bank-account-main strong{
+  color:#1f613b;
+  font-size:11px;
+}
+
+.payment-bank-account.active .bank-account-main span{
+  color:#416d53;
+  font-size:9px;
+  font-weight:700;
+}
+
+.payment-bank-account.active .bank-account-main small{
+  color:#668473;
+  font-size:8px;
+}
+
+/* Label automatically appears only on the selected account. */
+.payment-bank-account.active .bank-account-main::after{
+  content:"REKENING AKTIF";
+  display:inline-flex;
+  margin-top:4px;
+  padding:2px 6px;
+  border-radius:999px;
+  background:#dff3e5;
+  color:#247546;
+  font-size:6px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:.45px;
+  vertical-align:middle;
+}
+
+.payment-bank-account:not(.active) .bank-account-main{
+  opacity:.82;
+}
+
+.bank-account-check{
+  width:20px;
+  height:20px;
+  flex:0 0 20px;
+  display:grid;
+  place-items:center;
+  border:1px solid #d8d2cd;
+  border-radius:50%;
+  background:#eeeae6;
+  color:transparent;
+  font-size:9px;
+  font-weight:950;
+  transition:.16s ease;
+}
+
+.payment-bank-account.active .bank-account-check{
+  width:23px;
+  height:23px;
+  flex-basis:23px;
+  border:0;
+  background:#2d8a52;
+  color:#fff;
+  font-size:12px;
+  box-shadow:0 3px 8px rgba(36,117,70,.22);
+}
+
+/* Make the distinction remain clear on phones. */
+@media(max-width:767px){
+  .payment-bank-accounts{
+    gap:6px;
+    padding:2px 2px 4px;
+  }
+
+  .payment-bank-account{
+    min-height:50px;
+    padding:8px 9px;
+  }
+
+  .payment-bank-account.active{
+    min-height:57px;
+    padding:9px 10px;
+    transform:scale(1.008);
+  }
+
+  .payment-bank-account.active .bank-account-main strong{
+    font-size:10.5px;
+  }
+
+  .payment-bank-account.active .bank-account-main span{
+    font-size:8.5px;
+  }
+
+  .payment-bank-account.active .bank-account-main small{
+    font-size:7.5px;
+  }
+
+  .payment-bank-account.active .bank-account-main::after{
+    font-size:5.5px;
+    padding:2px 5px;
+  }
+}
+</style>
 
 </body>
 </html>
