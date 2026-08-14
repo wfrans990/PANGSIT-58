@@ -4516,6 +4516,537 @@ html,body{color-scheme:light;}
 }
 </style>
 
+
+<style id="v24-premium-sidebar-navigation">
+/* =========================================================
+   V24 — PREMIUM SIDEBAR NAVIGATION
+   Inactive = intentionally subdued
+   Active   = elevated, luminous and dominant
+   Navigation logic / HTML structure remains untouched.
+   ========================================================= */
+
+.sidebar .nav{
+  gap:6px;
+  padding:2px 2px 0;
+}
+
+.sidebar .nav button{
+  min-height:46px;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.018);
+  border-radius:14px;
+  color:rgba(229,211,205,.48);
+  background:rgba(255,255,255,.008);
+  box-shadow:none;
+  transform:translateX(0) scale(.985);
+  filter:saturate(.58);
+  opacity:.72;
+  transition:
+    transform .22s cubic-bezier(.2,.8,.2,1),
+    background .22s ease,
+    border-color .22s ease,
+    color .22s ease,
+    box-shadow .22s ease,
+    opacity .22s ease,
+    filter .22s ease;
+}
+
+/* Soft inner shine — almost invisible while inactive */
+.sidebar .nav button::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  border-radius:inherit;
+  background:
+    radial-gradient(120px 70px at 0% 50%,rgba(255,255,255,.045),transparent 72%),
+    linear-gradient(90deg,rgba(255,255,255,.018),transparent 60%);
+  opacity:.28;
+  transition:opacity .22s ease;
+  pointer-events:none;
+}
+
+/* Existing arrow remains the right-side active indicator */
+.sidebar .nav button::after{
+  right:12px;
+  color:#f3c86e;
+  opacity:0;
+  transform:translateY(-50%) translateX(-7px);
+  text-shadow:0 0 0 rgba(243,199,110,0);
+  transition:
+    opacity .22s ease,
+    transform .22s ease,
+    text-shadow .22s ease;
+}
+
+/* Inactive hover: visible enough to show it is clickable,
+   but still clearly below the active tab */
+.sidebar .nav button:hover:not(.active){
+  transform:translateX(2px) scale(.995);
+  color:rgba(255,247,242,.82);
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.052),rgba(255,255,255,.012));
+  border-color:rgba(255,255,255,.055);
+  box-shadow:0 6px 16px rgba(0,0,0,.09);
+  opacity:.9;
+  filter:saturate(.85);
+}
+
+.sidebar .nav button:hover:not(.active)::before{
+  opacity:.65;
+}
+
+/* ACTIVE TAB — strong visual hierarchy */
+.sidebar .nav button.active{
+  transform:translateX(3px) scale(1);
+  color:#fffaf7;
+  opacity:1;
+  filter:none;
+  border-color:rgba(243,199,107,.48);
+  background:
+    radial-gradient(180px 90px at 0% 50%,rgba(240,199,109,.12),transparent 68%),
+    linear-gradient(90deg,rgba(190,42,50,.58),rgba(133,20,28,.30) 62%,rgba(255,255,255,.045)),
+    rgba(255,255,255,.035);
+  box-shadow:
+    inset 4px 0 0 #f3c86e,
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 10px 25px rgba(0,0,0,.18),
+    0 0 26px rgba(181,36,43,.12);
+  text-shadow:0 1px 8px rgba(0,0,0,.18);
+}
+
+.sidebar .nav button.active::before{
+  opacity:1;
+  background:
+    radial-gradient(150px 75px at 0% 50%,rgba(243,199,110,.13),transparent 70%),
+    linear-gradient(100deg,rgba(255,255,255,.07),transparent 48%);
+}
+
+.sidebar .nav button.active::after{
+  opacity:1;
+  transform:translateY(-50%);
+  color:#f7d887;
+  text-shadow:0 0 12px rgba(243,199,110,.42);
+}
+
+/* Tiny press feedback */
+.sidebar .nav button:active{
+  transform:translateX(2px) scale(.985);
+}
+
+/* Pending count stays highly visible regardless of tab state */
+.sidebar .pending-nav-count{
+  opacity:1;
+  filter:none;
+}
+
+/* Keyboard accessibility */
+.sidebar .nav button:focus-visible{
+  outline:2px solid rgba(243,199,107,.78);
+  outline-offset:2px;
+}
+
+/* Mobile drawer: preserve the same hierarchy without making
+   the navigation feel oversized */
+@media(max-width:767px){
+  .sidebar .nav{
+    gap:7px;
+    padding:2px 1px 0;
+  }
+
+  .sidebar .nav button{
+    min-height:48px;
+    border-radius:14px;
+    transform:translateX(0) scale(.99);
+  }
+
+  .sidebar .nav button.active{
+    transform:translateX(2px) scale(1);
+  }
+
+  .sidebar .nav button:hover:not(.active){
+    transform:translateX(1px) scale(.995);
+  }
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .sidebar .nav button,
+  .sidebar .nav button::before,
+  .sidebar .nav button::after{
+    transition:none!important;
+  }
+}
+</style>
+
+
+<style id="v25-ipad-sidebar-final-fix">
+/* =========================================================
+   V25 — iPAD SIDEBAR / PENDING COUNTER FINAL FIX
+   Fokus:
+   1. Badge "Menunggu Pembayaran" selalu terkunci di kanan.
+   2. Tidak lagi mengikuti panjang teks / float.
+   3. Arrow active tidak bertabrakan dengan badge.
+   4. Semua menu iPad punya tinggi, padding, dan alignment konsisten.
+   5. Portrait + landscape iPad tetap rapi.
+   ========================================================= */
+
+@media (min-width:768px) and (max-width:1199px){
+
+  .sidebar .nav{
+    width:100%!important;
+    display:grid!important;
+    gap:6px!important;
+    padding:2px 1px 0!important;
+  }
+
+  .sidebar .nav button{
+    position:relative!important;
+    display:flex!important;
+    align-items:center!important;
+    width:100%!important;
+    min-width:0!important;
+    min-height:46px!important;
+    height:46px!important;
+    padding:9px 56px 9px 11px!important;
+    margin:0!important;
+    border-radius:13px!important;
+    text-align:left!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    font-size:11px!important;
+    line-height:1!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Prevent long labels from pushing the counter */
+  .sidebar .nav button{
+    text-overflow:ellipsis;
+  }
+
+  /* Keep the emoji/icon visually aligned with the label */
+  .sidebar .nav button::first-letter{
+    font-size:11px!important;
+  }
+
+  /* Counter: fixed to the right side of the button,
+     vertically centered — never use float/static positioning. */
+  .sidebar .nav .pending-nav-count{
+    position:absolute!important;
+    right:31px!important;
+    top:50%!important;
+    left:auto!important;
+    float:none!important;
+    transform:translateY(-50%)!important;
+
+    min-width:20px!important;
+    width:auto!important;
+    height:20px!important;
+    display:grid!important;
+    place-items:center!important;
+    padding:0 5px!important;
+    margin:0!important;
+
+    border:1px solid rgba(255,255,255,.18)!important;
+    border-radius:999px!important;
+    background:linear-gradient(135deg,#dc3540,#a71922)!important;
+    color:#fff!important;
+    font-size:8px!important;
+    font-weight:950!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+    z-index:5!important;
+    box-shadow:
+      0 4px 10px rgba(197,40,49,.25),
+      inset 0 1px 0 rgba(255,255,255,.20)!important;
+  }
+
+  /* Active arrow stays separate from the counter */
+  .sidebar .nav button::after{
+    right:10px!important;
+    top:50%!important;
+    z-index:6!important;
+  }
+
+  .sidebar .nav button.active::after{
+    opacity:1!important;
+    transform:translateY(-50%)!important;
+  }
+
+  /* Make inactive items quieter, active item clearer */
+  .sidebar .nav button:not(.active){
+    opacity:.68!important;
+  }
+
+  .sidebar .nav button:not(.active):hover{
+    opacity:.92!important;
+  }
+
+  .sidebar .nav button.active{
+    opacity:1!important;
+  }
+
+  /* Slightly stronger active state on iPad */
+  .sidebar .nav button.active{
+    border-color:rgba(243,199,107,.42)!important;
+    box-shadow:
+      inset 3px 0 #f3c86e,
+      0 7px 18px rgba(0,0,0,.16),
+      0 0 18px rgba(181,36,43,.10)!important;
+  }
+
+  /* Sidebar account remains separated from the navigation */
+  .sidebar .sidebar-bottom{
+    margin-top:auto!important;
+    padding-top:12px!important;
+  }
+}
+
+/* iPad portrait: give the sidebar a little more breathing room */
+@media (min-width:768px) and (max-width:900px){
+  .app{
+    grid-template-columns:190px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    min-width:190px!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+
+  .sidebar .nav button{
+    min-height:47px!important;
+    height:47px!important;
+    font-size:10.5px!important;
+    padding-left:10px!important;
+    padding-right:55px!important;
+  }
+
+  .sidebar .nav .pending-nav-count{
+    right:30px!important;
+    min-width:19px!important;
+    width:19px!important;
+    height:19px!important;
+    font-size:7.5px!important;
+  }
+}
+
+/* Wider iPad / landscape */
+@media (min-width:901px) and (max-width:1199px){
+  .sidebar .nav button{
+    font-size:11px!important;
+    padding-right:58px!important;
+  }
+
+  .sidebar .nav .pending-nav-count{
+    right:31px!important;
+  }
+}
+</style>
+
+
+<style id="v26-ipad-sidebar-width-final">
+/* =========================================================
+   V26 — iPAD SIDEBAR WIDTH FINAL
+   Sidebar iPad dibuat sedikit lebih lebar agar label
+   "Menunggu Pembayaran" + badge jumlah tidak bertabrakan.
+   Desktop dan phone tidak terpengaruh.
+   ========================================================= */
+
+@media (min-width:768px) and (max-width:1199px){
+
+  /* Lebarkan panel kiri dari 190px menjadi 220px.
+     Ruang tambahan 30px cukup untuk label + badge,
+     tetapi tetap menjaga area konten utama tetap luas. */
+  .app{
+    grid-template-columns:220px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    min-width:220px!important;
+    width:auto!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+
+  .sidebar .nav{
+    width:100%!important;
+  }
+
+  .sidebar .nav button{
+    width:100%!important;
+    min-width:0!important;
+    padding-left:11px!important;
+    padding-right:58px!important;
+    overflow:hidden!important;
+  }
+
+  /* Badge tetap berada di area kanan yang khusus,
+     sehingga tidak menimpa tulisan menu. */
+  .sidebar .nav .pending-nav-count{
+    right:31px!important;
+    top:50%!important;
+    position:absolute!important;
+    float:none!important;
+    transform:translateY(-50%)!important;
+  }
+}
+
+/* iPad portrait tetap memakai lebar yang sama agar layout
+   tidak berubah-ubah ketika orientasi/viewport sedikit bergeser. */
+@media (min-width:768px) and (max-width:900px){
+  .app{
+    grid-template-columns:220px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    min-width:220px!important;
+  }
+}
+</style>
+
+
+<style id="v27-sidebar-pending-badge-spacing-final">
+/* =========================================================
+   V27 — SIDEBAR PENDING BADGE SPACING — ALL DEVICES
+   Tujuan:
+   - Memberi jarak yang konsisten antara teks menu dan badge.
+   - Badge tidak menempel pada akhir tulisan.
+   - Tidak menimpa teks pada desktop, iPad maupun phone.
+   - Mempertahankan sidebar iPad 220px dari V26.
+   ========================================================= */
+
+/* Common desktop + tablet + phone sidebar navigation */
+.sidebar .nav button{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:0!important;
+  width:100%!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+
+/* Badge kembali menjadi bagian dari flow tombol.
+   Ini membuat jaraknya mengikuti teks secara natural. */
+.sidebar .nav .pending-nav-count{
+  position:static!important;
+  float:none!important;
+  flex:0 0 auto!important;
+  margin-left:12px!important;
+  margin-right:20px!important;
+  transform:none!important;
+
+  min-width:20px!important;
+  width:auto!important;
+  height:20px!important;
+  padding:2px 6px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:999px!important;
+  white-space:nowrap!important;
+  box-sizing:border-box!important;
+}
+
+/* Karena label menu berupa text node, area teks diberi ruang
+   fleksibel agar badge tetap punya jarak dan tidak tertindih. */
+.sidebar .nav button{
+  white-space:normal!important;
+  overflow:hidden!important;
+}
+
+/* Active arrow tetap berada di ujung kanan dan tidak bertabrakan
+   dengan badge karena badge memiliki margin-right khusus. */
+.sidebar .nav button::after{
+  position:absolute!important;
+  right:10px!important;
+  top:50%!important;
+  z-index:7!important;
+}
+
+/* Desktop — jarak dibuat sedikit lebih lega */
+@media(min-width:1200px){
+  .sidebar .nav .pending-nav-count{
+    margin-left:14px!important;
+    margin-right:22px!important;
+  }
+}
+
+/* iPad / tablet — sidebar tetap 220px dari revisi sebelumnya */
+@media(min-width:768px) and (max-width:1199px){
+  .app{
+    grid-template-columns:220px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    min-width:220px!important;
+    width:auto!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+
+  .sidebar .nav button{
+    padding-left:11px!important;
+    padding-right:42px!important;
+  }
+
+  .sidebar .nav .pending-nav-count{
+    margin-left:10px!important;
+    margin-right:15px!important;
+    min-width:19px!important;
+    width:auto!important;
+    height:19px!important;
+    padding:2px 5px!important;
+    font-size:8px!important;
+  }
+}
+
+/* iPad portrait */
+@media(min-width:768px) and (max-width:900px){
+  .app{
+    grid-template-columns:220px minmax(0,1fr)!important;
+  }
+
+  .sidebar{
+    min-width:220px!important;
+  }
+}
+
+/* Phone — sidebar drawer lebih lebar, sehingga teks dan badge
+   tetap punya breathing room. */
+@media(max-width:767px){
+  .sidebar .nav button{
+    min-height:46px!important;
+    padding-left:12px!important;
+    padding-right:36px!important;
+  }
+
+  .sidebar .nav .pending-nav-count{
+    margin-left:11px!important;
+    margin-right:16px!important;
+    min-width:20px!important;
+    width:auto!important;
+    height:20px!important;
+    padding:2px 6px!important;
+    font-size:9px!important;
+  }
+}
+
+/* Phone sangat kecil: jangan biarkan badge terlalu jauh dari label */
+@media(max-width:380px){
+  .sidebar .nav .pending-nav-count{
+    margin-left:8px!important;
+    margin-right:14px!important;
+    min-width:19px!important;
+    height:19px!important;
+    font-size:8px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div id="v21LoadingVeil" aria-hidden="true"><div class="v21-spinner"></div></div>
@@ -6335,7 +6866,17 @@ function renderReceipt(t){
   const isPaid=Number(t.paid||0)>0 || t.paymentMethod==="bank";
   const paymentLabel=t.paymentMethod==="bank"?`TRANSFER • ${t.bankName||"BANK"}`:"CASH";
   const title=isPaid?"Bukti Pembayaran":"Bill Pesanan";
-  const paymentSection=isPaid?`<div class="receipt-paid"><div class="receipt-paid-title">LUNAS</div><div class="receipt-row"><span>Metode Bayar</span><b>${paymentLabel}</b></div><div class="receipt-row"><span>Bayar</span><b>${rupiah(t.paid||0)}</b></div><div class="receipt-row"><span>Kembali</span><b>${rupiah(t.change||0)}</b></div></div><hr><div class="center">Pembayaran telah diterima.</div><div class="center">Simpan struk ini sebagai bukti pembukuan.</div>`:`<div class="center">Belum dibayar.</div>`;
+  const paymentSection=isPaid
+    ? `<div class="receipt-paid">
+         <div class="receipt-paid-title">LUNAS</div>
+         <div class="receipt-row"><span>Metode Bayar</span><b>${paymentLabel}</b></div>
+         <div class="receipt-row"><span>Bayar</span><b>${rupiah(t.paid||0)}</b></div>
+         ${t.paymentMethod==="bank" ? "" : `<div class="receipt-row"><span>Kembali</span><b>${rupiah(t.change||0)}</b></div>`}
+       </div>
+       <hr>
+       <div class="center">Pembayaran telah diterima.</div>
+       <div class="center">Simpan struk ini sebagai bukti pembukuan.</div>`
+    : `<div class="center">Belum dibayar.</div>`;
 
   document.getElementById("printArea").innerHTML=`<div class="receipt">
     <h2>${settings.storeName}</h2>
